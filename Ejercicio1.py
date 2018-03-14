@@ -35,11 +35,3 @@ class Alumno (object):
             return False
         return sum(self.lista_de_notas) / len(self.lista_de_notas)
 
-
-
-
-    def getNombre(self):
-        return self.nombre
-
-    def getapellido(self):
-        return self.apellido
