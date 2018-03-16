@@ -23,62 +23,51 @@ class Alumno(object):
         self.lista_de_materias.append(unaM)
 
     def agregarNota(self, nota, nombremateria):
-        for n in self.lista_de_materias:
-            if nombremateria != self.lista_de_materias[n].nombre:
-                return False
-            self.lista_de_materias[n].agregarNota(nota)
+        for item in self.lista_de_materias:
+            if item.nombre == nombremateria:
+                item.agregarNota(nota)
+                return True
+        return False
 
     def promedioNotasMateria(self, nombremateria):
-        for n in self.lista_de_materias:
-            if self.lista_de_materias[n].nombre == nombremateria:
+        for item in self.lista_de_materias:
+            if item.nombre == nombremateria:
                 if len(self.lista_de_materias) == 0:
                     return False
-                return sum(self.lista_de_materias[n].lista_de_notas) / len(self.lista_de_materias[n].lista_de_notas)
+                return sum(item.lista_de_notas) / len(item.lista_de_notas)
 
     def menorNota(self):
         if len(self.lista_de_materias) == 0:
             return False
-        m = self.lista_de_materias[0].menorNota
-        for n in self.lista_de_materias:
-            if m > self.lista_de_materias[n].menorNota:
-                m = self.lista_de_materias[n].menorNota
+        m = self.lista_de_materias[0].menorNota()
+        for item in self.lista_de_materias:
+            if m > item.menorNota():
+                m = item.menorNota()
         return m
 
     def promedio(self):
         if len(self.lista_de_materias) == 0:
             return False
         m = 0
-        l = len(self.lista_de_materias)
-        for n in self.lista_de_materias:
-            m += self.lista_de_materias[n].promedioMateria
-            if self.lista_de_materias[n].promedioMateria == False:
-                l = l-1
-        return m / l
+        for item in self.lista_de_materias:
+            m += item.promedioMateria()
+        return m / len(self.lista_de_materias)
 
     def menorPromedio(self):
         if len(self.lista_de_materias) == 0:
             return False
-        m = self.lista_de_materias[0].promedioMateria
-        for n in self.lista_de_materias:
-            if m > self.lista_de_materias[n].promedioMateria:
-                m = self.lista_de_materias[n].promedioMateria
+        m = self.lista_de_materias[0].promedioMateria()
+        for item in self.lista_de_materias:
+            if m > item.promedioMateria():
+                m = item.promedioMateria()
         return m
 
     def mayorPromedio(self):
         if len(self.lista_de_materias) == 0:
             return False
-        m = self.lista_de_materias[0].promedioMateria
-        for n in self.lista_de_materias:
-            if m < self.lista_de_materias[n].promedioMateria:
-                m = self.lista_de_materias[n].promedioMateria
+        m = self.lista_de_materias[0].promedioMateria()
+        for item in self.lista_de_materias:
+            if m < item.promedioMateria():
+                m = item.promedioMateria()
         return m
 
-    def agregarNota(self, nota):
-        if nota > 10 or nota < 1:
-            return False
-        self.lista_de_notas.append(nota)
-
-    def mayorNota(self):
-        if len(self.lista_de_notas) == 0:
-            return False
-        return max(self.lista_de_notas)

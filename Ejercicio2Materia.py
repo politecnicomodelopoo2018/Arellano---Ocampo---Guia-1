@@ -14,6 +14,11 @@ class Materia (object):
             return False
         return min(self.lista_de_notas)
 
+    def mayorNota(self):
+        if len(self.lista_de_notas ) == 0:
+            return False
+        return max(self.lista_de_notas)
+
     def promedioMateria(self):
         if len(self.lista_de_notas ) == 0:
             return False
