@@ -1,6 +1,7 @@
 from Ejercicio2Materia import Materia
 
-class Alumno (object):
+
+class Alumno(object):
     nombre = None
     apellido = None
     fecha_de_nac = None
@@ -34,15 +35,43 @@ class Alumno (object):
                     return False
                 return sum(self.lista_de_materias[n].lista_de_notas) / len(self.lista_de_materias[n].lista_de_notas)
 
+    def menorNota(self):
+        if len(self.lista_de_materias) == 0:
+            return False
+        m = self.lista_de_materias[0].menorNota
+        for n in self.lista_de_materias:
+            if m > self.lista_de_materias[n].menorNota:
+                m = self.lista_de_materias[n].menorNota
+        return m
 
+    def promedio(self):
+        if len(self.lista_de_materias) == 0:
+            return False
+        m = 0
+        l = len(self.lista_de_materias)
+        for n in self.lista_de_materias:
+            m += self.lista_de_materias[n].promedioMateria
+            if self.lista_de_materias[n].promedioMateria == False:
+                l = l-1
+        return m / l
 
+    def menorPromedio(self):
+        if len(self.lista_de_materias) == 0:
+            return False
+        m = self.lista_de_materias[0].promedioMateria
+        for n in self.lista_de_materias:
+            if m > self.lista_de_materias[n].promedioMateria:
+                m = self.lista_de_materias[n].promedioMateria
+        return m
 
-
-
-
-
-
-
+    def mayorPromedio(self):
+        if len(self.lista_de_materias) == 0:
+            return False
+        m = self.lista_de_materias[0].promedioMateria
+        for n in self.lista_de_materias:
+            if m < self.lista_de_materias[n].promedioMateria:
+                m = self.lista_de_materias[n].promedioMateria
+        return m
 
     def agregarNota(self, nota):
         if nota > 10 or nota < 1:
@@ -53,9 +82,3 @@ class Alumno (object):
         if len(self.lista_de_notas) == 0:
             return False
         return max(self.lista_de_notas)
-
-    def menorNota(self):
-        if len(self.lista_de_notas) == 0:
-            return False
-        return min(self.lista_de_notas)
-
