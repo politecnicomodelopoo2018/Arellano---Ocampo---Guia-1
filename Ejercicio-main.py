@@ -1,26 +1,13 @@
 from Ejercicio2Alumno import Alumno
 from Ejercicio2Materia import  Materia
+from Ejercicio4 import Empresa
+from Ejercicio4 import Empleado
+
 import datetime
+from calendar import monthrange
 
+a = Empleado()
 
-a = Alumno()
-a.setNombre("Jorge")
-a.setApellido("Lucas")
-fecha = datetime.date(2000, 12, 31)
-a.setFecha_de_nac(fecha)
+b = Empresa(a)
 
-a.agregarMateria("Matematica")
-a.agregarMateria("Lengua")
-a.agregarMateria("Civica")
-
-print("monja")
-
-a.agregarNota(1, "Matematica")
-a.agregarNota(7, "Matematica")
-a.agregarNota(2, "Civica")
-a.agregarNota(8, "Civica")
-
-print("atroden")
-
-print(a.promedioNotasMateria("Matematica"))
-print(a.promedio())
+print(b.asistenciaMensual(2011, 10, "Jorge"))
