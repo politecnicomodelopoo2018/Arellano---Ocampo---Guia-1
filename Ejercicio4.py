@@ -53,8 +53,8 @@ class Empresa(object):
         self.listaEmpleados.append(empleado)
 
 
-    def asistenciaMensual(self, año, mes, nombre):
+    def getPorcentajeAsistenciaMensual(self, año, mes):
+        suma = 0
         for item in self.listaEmpleados:
-            if item.nombre == nombre:
-                a = item.getPorcentajeAsistenciaMensual(año,mes)
-                return a
+            suma += item.getPorcentajeAsistenciaMensual(año,mes)
+        return suma/len(self.listaEmpleados)
