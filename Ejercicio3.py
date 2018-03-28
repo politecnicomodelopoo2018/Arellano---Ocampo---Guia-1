@@ -47,17 +47,62 @@ class Equipo(object):
         return True
 
 class Dia(object):
-    mañana = None
-    tarde = None
-    noche = None
 
-    def setManTarNoch(self, mañana, tarde, noche):
-        self.mañana = mañana
-        self.tarde = tarde
-        self.noche = noche
+    def __init__(self):
+        self.turno = []
+
+    def setTurno(self, turno):
+        self.turno = turno
+
+class Partido(object):
+    equipo1 = None
+    equipo2 = None
+    Dia = None
+
+    def setEquipoA(self, equipo):
+        self.equipoA = equipo
+
+    def setEquipoB(self, equipo):
+        self.equipoB = equipo
+
+    def setDia(self, dia):
+        self.Dia = dia
 
 class Torneo(object):
 
     def __init__(self):
         self.listaEquipos = []
+        self.listaPartidos = []
+
+    def setListaEquipos(self, listaequipos):
+        self.listaEquipos = listaequipos
+
+    def añadirAListaPartidos(self, partido):
+        self.listaPartidos.append(partido)
+
+    def buscarIgual(self, equipoA, equipoB):
+        for partido in self.listaPartidos:
+            if (equipoA == partido.equipo1 and equipoB == partido.equipo2) or (equipoA == partido.equipo2 and equipoB == partido.equipo1):
+                return False
+            return True
+
+    def fixture(self):
+        partido = Partido()
+        for equipo in self.listaEquipos:
+            for equipo2 in self.listaEquipos:
+                if (equipo2 == equipo) or (self.buscarIgual(equipo, equipo2) == False):
+                    continue
+                for dia in range(6):
+                    for turno in range(3):
+                        if equipo2.listaHorarios[dia][turno] and equipo.listaHorarios[dia][turno]:
+                            partido.equipoA = equipo
+                            partido.equipoB = equipo2
+                            partido.Dia = equipo.listaHorarios[dia]
+                            self.añadirAListaPartidos(partido)
+
+
+
+
+
+
 
