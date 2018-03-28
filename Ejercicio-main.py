@@ -1,25 +1,32 @@
-from Ejercicio2Alumno import Alumno
-from Ejercicio2Materia import  Materia
-from calendar import monthrange
-from Ejercicio4 import Empresa
-from Ejercicio4 import Empleado
-import datetime
+from Ejercicio3 import Jugador
+from Ejercicio3 import Equipo
+from Ejercicio3 import Torneo
+from Ejercicio3 import Partido
+from Ejercicio3 import Dia
+from datetime import date
 
+jorge = Jugador()
 
-a = Empleado()
+jorge.setNombre("Jorge")
+jorge.setFechaNac(datetime.date(2001,5,13))
+jorge.setCapitanState(True)
+jorge.setNCamiseta(10)
 
-b = Empresa()
+lunes = Dia()
+lunes.setTurno([True, True, True])
+martes = Dia()
+martes.setTurno([True, True, True])
+miercoles = Dia()
+miercoles.setTurno([True, True, True])
+jueves = Dia()
+jueves.setTurno([True, True, True])
+viernes = Dia()
+viernes.setTurno([True, True, True])
+sabado = Dia()
+sabado.setTurno([True, True, True])
+chanchos = Equipo()
 
-a.setApellido("Ocampo")
-a.setNombre("Jorge")
-a.setFechaNac(datetime.date(2001, 5, 13))
-horario = [True, True, True, True, True, False, False]
-a.setListaHorario(horario)
-asistencias = [datetime.date(2011, 5, 13), datetime.date(2011, 5, 14), datetime.date(2011, 5, 15), datetime.date(2011, 5, 16) , datetime.date(2011, 5, 17), datetime.date(2011, 5, 18), datetime.date(2011, 5, 19),datetime.date(2011, 5, 20), datetime.date(2011, 5, 1)]
-a.setListaAsistencia(asistencias)
-a.setTelefono(123412141)
-
-b.AgregarEmpleado(a)
-
-print(b.asistenciaMensual(2011,5, "Jorge"))
+chanchos.setNombre("Los Chanchos")
+chanchos.setBarrio("Flores")
+chanchos.setListaHorarios()
 
