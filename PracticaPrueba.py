@@ -1,4 +1,3 @@
-from datetime import date
 class Humano(object):
     nombre = None
     apellido = None
