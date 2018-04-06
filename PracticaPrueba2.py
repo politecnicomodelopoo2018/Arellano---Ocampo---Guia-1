@@ -19,7 +19,10 @@ class Persona(object):
         self.nombre = nombre
 
     def setFechaNac(self, fechaNac):
-        self.setFechaNac(fechaNac)
+        self.fechaNac =fechaNac
+
+    def setListaPlatos(self, lista):
+        self.listaPlatos = lista
 
     def addPlato(self, plato):
         self.listaPlatos.append(plato)
@@ -36,7 +39,7 @@ class Familia(object):
         self.integrantes = []
 
     def addIntegrante(self, integrante):
-        self.integrantes = integrante
+        self.integrantes.append(integrante)
 
     def getPromCal(self):
         calorias = 0
@@ -47,13 +50,13 @@ class Familia(object):
     def getPersonaMax(self):
         primer = self.integrantes[0]
         for item in self.integrantes:
-            if primer < item:
+            if primer.calConsumidas() < item.calConsumidas():
                 primer = item
         return primer
 
     def getPersonaMin(self):
         primer = self.integrantes[0]
         for item in self.integrantes:
-            if primer > item:
+            if primer.calConsumidas() > item.calConsumidas():
                 primer = item
         return primer
