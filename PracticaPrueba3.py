@@ -50,11 +50,6 @@ class Empresa(object):
             if item.emplO.pais != item.emplD.pais:
                 valor += item.duracion
 
-    def ranking(self):
-        ranking = []
-        for item in range(len(self.empleados)):
-            if self.empleados[item].tiempoExt <
-
 
 class Llamada(object):
 
