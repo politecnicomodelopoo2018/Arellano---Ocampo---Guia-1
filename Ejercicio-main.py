@@ -1,41 +1,40 @@
 
-from datetime import date
-from PracticaPrueba2 import Persona
-from PracticaPrueba2 import Plato
-from PracticaPrueba2 import Familia
+from Ejercicio7 import *
 
-gabriela = Persona()
+menu = True
+opcion = 0
+opcionB = 0
+Sis = Colegio()
+temp = None
 
-gabriela.setNombre("Gabriela")
-gabriela.setFechaNac(date(1986, 3, 26))
+while menu:
+    print("Menu:")
+    print("1- Alumno")
+    print("2- Profesor")
+    print("3- Platos")
+    print("4- Pedidos")
+    print("5- Salir")
 
-jorge = Persona()
+    opcion = input()
 
-jorge.setNombre("Jorge")
-jorge.setFechaNac(date(2001, 5, 13))
+    while opcion == 1:
+        print("1- Añadir")
+        print("2- Modificar")
+        print("3- Eliminar")
 
-fideos = Plato()
-fideos.setNombre("penne")
-fideos.setCantCal(500)
+        opcionB = input()
 
-combo_mac = Plato()
-combo_mac.setNombre("Doble Cuarto de Libra")
-combo_mac.setCantCal(827)
+        if opcionB == 1:
+            CrearAlumno(Sis)
 
-churrasco = Plato()
-churrasco.setNombre("Dragon Dildo")
-churrasco.setCantCal(1000)
+        if opcionB == 2:
+            print("Ingrese el alumno a modificar")
+            temp = input()
+            ModificarAlumno(Sis, temp)
 
-morfi = [fideos, fideos, combo_mac, churrasco, combo_mac, churrasco, churrasco, churrasco, churrasco, churrasco]
-morfi2 = [fideos]
 
-jorge.setListaPlatos(morfi)
-gabriela.setListaPlatos(morfi2)
 
-okeimp = Familia()
-okeimp.addIntegrante(jorge)
-okeimp.addIntegrante(gabriela)
 
-print(okeimp.getPersonaMin().nombre)
-print(okeimp.getPersonaMax().nombre)
-print(okeimp.getPromCal())
+
+    if opcion == 5:
+        menu = False
