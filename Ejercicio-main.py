@@ -4,10 +4,10 @@ from Ejercicio7 import *
 menu = True
 opcion = 0
 opcionB = 0
-Sis = Colegio()
+bufet = Bufet()
+Sis = Colegio(bufet)
 temp = None
-
-while menu:
+while opcion != "5":
     print("Menu:")
     print("1- Alumno")
     print("2- Profesor")
@@ -17,24 +17,28 @@ while menu:
 
     opcion = input()
 
-    while opcion == 1:
+    while opcion == "1":
         print("1- Añadir")
         print("2- Modificar")
         print("3- Eliminar")
+        print("4- Volver")
 
         opcionB = input()
 
-        if opcionB == 1:
+        if opcionB == "1":
             CrearAlumno(Sis)
 
-        if opcionB == 2:
+        if opcionB == "2":
             print("Ingrese el alumno a modificar")
             temp = input()
-            ModificarAlumno(Sis, temp)
+            print("HI")
+            ModificarPersona(Sis, temp)
+
+        if opcionB == "4":
+            opcion = 0
 
 
 
 
 
-    if opcion == 5:
-        menu = False
+
