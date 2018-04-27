@@ -31,13 +31,35 @@ while opcion != "5":
         if opcionB == "2":
             print("Ingrese el alumno a modificar")
             temp = input()
-            print("HI")
             ModificarPersona(Sis, temp)
+
+        if opcionB == "3":
+            EliminarDeListaPersona(Sis)
 
         if opcionB == "4":
             opcion = 0
 
+    while opcion == "2":
+        print("1- Añadir")
+        print("2- Modificar")
+        print("3- Eliminar")
+        print("4- Volver")
 
+        opcionB = input()
+
+        if opcionB == "1":
+            CrearProfesor(Sis)
+
+        if opcionB == "2":
+            print("Ingrese el profesor a modificar")
+            temp = input()
+            ModificarPersona(Sis, temp)
+
+        if opcionB == "3":
+            EliminarDeListaPersona(Sis)
+
+        if opcionB == "4":
+            opcion = 0
 
 
 
