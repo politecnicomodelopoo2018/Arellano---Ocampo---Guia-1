@@ -28,15 +28,15 @@ while opcion != "5":
         if opcionB == "1":
             CrearAlumno(Sis)
 
-        if opcionB == "2":
+        elif opcionB == "2":
             print("Ingrese el alumno a modificar")
             temp = input()
             ModificarPersona(Sis, temp)
 
-        if opcionB == "3":
+        elif opcionB == "3":
             EliminarDeListaPersona(Sis)
 
-        if opcionB == "4":
+        elif opcionB == "4":
             opcion = 0
 
     while opcion == "2":
@@ -50,16 +50,46 @@ while opcion != "5":
         if opcionB == "1":
             CrearProfesor(Sis)
 
-        if opcionB == "2":
-            print("Ingrese el profesor a modificar")
-            temp = input()
+        elif opcionB == "2":
+            temp = input("Ingrese el profesor a modificar")
             ModificarPersona(Sis, temp)
 
-        if opcionB == "3":
+        elif opcionB == "3":
             EliminarDeListaPersona(Sis)
 
-        if opcionB == "4":
+        elif opcionB == "4":
             opcion = 0
+
+    while opcion == "3":
+        print("1- Añadir")
+        print("2- Modificar")
+        print("3- Eliminar")
+        print("4- Volver")
+
+        opcionB = input()
+
+    while opcion == "4":
+        print("1- Añadir")
+        print("2- Modificar")
+        print("3- Eliminar")
+        print("4- Volver")
+
+        opcionB = input()
+
+        if opcion == "1":
+            CrearPedido(Sis)
+
+        elif opcionB == "2":
+            O = input("Ingrese la persona del pedido")
+            ModificarPedido(Sis, O)
+
+        elif opcionB == "3":
+            EliminarPedido(Sis)
+
+        elif opcionB == "4":
+            opcion = 0
+
+
 
 
 
