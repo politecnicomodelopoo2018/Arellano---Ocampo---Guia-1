@@ -209,7 +209,7 @@ def EliminarDeListaPersona (Sis):
     temp = input()
     for item in Sis.listaPersonas:
         if item.nombre == temp:
-            Sis.remove(item)
+            Sis.listaPersonas.remove(item)
 
 
 
