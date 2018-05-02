@@ -81,33 +81,35 @@ def CrearAlumno (Sis):
     A = Alumno()
     A.setNombre(input("Ingrese el nombre:"))
     A.setApellido(input("Ingrese el apellido:"))
-    A.setDivision(input("Ingrese la division"))
+    A.setDivision(input("Ingrese la division:"))
     Sis.listaPersonas.append(A)
 
 def CrearProfesor (Sis):
-    P = Profesor
-    P.setNombre(input("Ingrese el nombre"))
-    P.setApellido(input("Ingrese el apellido"))
-    P.setDescuento(input("Ingrese el descuento"))
+    P = Profesor()
+    P.setNombre(input("Ingrese el nombre:"))
+    P.setApellido(input("Ingrese el apellido:"))
+    P.setDescuento(input("Ingrese el descuento:"))
     Sis.listaPersonas.append(P)
 
 def CrearPlato (Sis):
     PL = Plato()
-    PL.setNombre(input("Ingrese nombre"))
-    PL.setPrecio(input("Ingrese precio"))
-    Sis.bufet.append(PL)
+    PL.setNombre(input("Ingrese nombre:"))
+    PL.setPrecio(input("Ingrese precio:"))
+    Sis.bufet.listaPlatos.append(PL)
 
 def CrearPedido (Sis):
     PD = Pedido()
-    O = input("Fecha Creacion")
+    O = input("Fecha Creacion:")
     PD.setFechaCreacion(O)
     O = input("Plato")
-    PD.setPlato(O)
+    for item in Sis.bufet.listaPedidos:
+        if item.nombre == O:
+            PD.setPlato(item)
     O = input("Persona")
     for item in Sis.listaPersonas:
         if item.nombre == O:
             PD.setPersona(item)
-    O = input("Hora de Entrega")
+    O = input("Hora de Entrega:")
     PD.setHoraEntrega(O)
 
 def ModificarPersona (sis, nombre):
@@ -121,29 +123,29 @@ def ModificarPersona (sis, nombre):
                 print("4- Volver")
                 A = input()
                 if A == "1":
-                    B = input("Nombre nuevo")
-                    item.nombre.setNombre(B)
+                    B = input("Nombre nuevo:")
+                    item.setNombre(B)
                 if A == "2":
-                    B = input("Apellido nuevo")
-                    item.nombre.setApellido(B)
+                    B = input("Apellido nuevo:")
+                    item.setApellido(B)
                 if A == "3":
-                    B = input("Division nuva")
-                    item.nombre.setDivision(B)
+                    B = input("Division nueva:")
+                    item.setDivision(B)
 
-            while item is Profesor and A != "4":
+            while type(item) is Profesor and A != "4":
                 print("1-Modificar Nombre")
                 print("2-Modificar Apellido")
                 print("3-Modificar Descuento")
                 print("4-Salir")
                 A = input()
                 if A == "1":
-                    B = input("Nombre nuevo")
+                    B = input("Nombre nuevo:")
                     item.setNombre(B)
                 if A == "2":
-                    B = input("Apellido nuevo")
+                    B = input("Apellido nuevo:")
                     item.setApellido(B)
                 if A == "3":
-                    B = input("Descuento nuevo")
+                    B = input("Descuento nuevo:")
                     item.setDescuento(B)
 
 def ModificarPlato (sis, nombre):
@@ -155,10 +157,10 @@ def ModificarPlato (sis, nombre):
                 print("3-Salir")
                 A = input()
                 if A == "1":
-                    B = input("Nombre nuevo")
+                    B = input("Nombre nuevo:")
                     item.setNombre(B)
                 if A == "2":
-                    B = input("Precio nuevo")
+                    B = input("Precio nuevo:")
                     item.setPrecio(B)
 
 def ModificarPedido (sis, persona):
@@ -173,18 +175,18 @@ def ModificarPedido (sis, persona):
                 print("6-Salir")
                 A = input()
                 if A == "1":
-                    B = input("FechaCreacion nueva")
+                    B = input("FechaCreacion nueva:")
                     item.setFechaCreacion(B)
                 if A == "2":
-                    B = input("Plato nuevo")
+                    B = input("Plato nuevo:")
                     item.setPlato(B)
                 if A =="3":
-                    B = input("Persona nueva")
+                    B = input("Persona nueva:")
                     for met in sis.listaPersonas:
                         if met == B:
                             item.setPersona = met
                 if A == "4":
-                    B = input("Hora nueva")
+                    B = input("Hora nueva:")
                     item.setHoraEntrega(B)
                 if A == "5":
                     print("1-Entregado")
@@ -196,19 +198,19 @@ def ModificarPedido (sis, persona):
                         item.setEntregado(False)
 
 def EliminarDeListaPersona (Sis):
-    temp = input("Ingrese la persona a borrar")
+    temp = input("Ingrese la persona a borrar:")
     for item in Sis.listaPersonas:
         if item.nombre == temp:
             Sis.listaPersonas.remove(item)
 
 def EliminarPedido (Sis):
-    temp = input("Persona pedido")
+    temp = input("Persona pedido:")
     for item in Sis.bufet.listaPedidos:
         if item.nombre == temp:
             Sis.bufet.listaPedidos.remove(item)
 
 def EliminarPlato (Sis):
-    temp = input("Ingrese el plato a borrar")
+    temp = input("Ingrese el plato a borrar:")
     for item in Sis.bufet.listaPlatos:
         if item.nombre == temp:
             Sis.bufet.listaPlatos.remove(item)
@@ -219,13 +221,22 @@ def MenuBase():
     print("2- Profesor")
     print("3- Platos")
     print("4- Pedidos")
-    print("5- Salir")
+    print("5- Lista")
+    print("6- Salir")
 
 def MenuAMEV():
     print("1- Añadir")
     print("2- Modificar")
     print("3- Eliminar")
     print("4- Volver")
+
+def Lista(Sis):
+    for item in Sis.bufet.listaPedidos:
+        if type(item.persona) == Profesor:
+            print(item.nombre, item.plato.precio*item.persona.descuento)
+        else:
+            print(item.nombre, item.plato.precio)
+    wait = input("Press enter")
 
 
 

@@ -7,7 +7,7 @@ opcionB = 0
 bufet = Bufet()
 Sis = Colegio(bufet)
 temp = None
-while opcion != "5":
+while opcion != "6":
     MenuBase()
     opcion = input()
 
@@ -41,7 +41,7 @@ while opcion != "5":
             CrearProfesor(Sis)
 
         elif opcionB == "2":
-            temp = input("Ingrese el profesor a modificar")
+            temp = input("Ingrese el profesor a modificar:")
             ModificarPersona(Sis, temp)
 
         elif opcionB == "3":
@@ -55,11 +55,11 @@ while opcion != "5":
         MenuAMEV()
         opcionB = input()
 
-        if opcion == "1":
+        if opcionB == "1":
             CrearPlato(Sis)
 
         elif opcionB == "2":
-            temp = input("Ingrese el nombre del plato")
+            temp = input("Ingrese el nombre del plato:")
             ModificarPlato(Sis, temp)
 
         elif opcionB == "3":
@@ -74,7 +74,7 @@ while opcion != "5":
 
         opcionB = input()
 
-        if opcion == "1":
+        if opcionB == "1":
             CrearPedido(Sis)
 
         elif opcionB == "2":
@@ -87,6 +87,8 @@ while opcion != "5":
         elif opcionB == "4":
             opcion = 0
 
+    if opcion == "5":
+        Lista(Sis)
 
 
 
