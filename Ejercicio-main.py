@@ -8,20 +8,12 @@ bufet = Bufet()
 Sis = Colegio(bufet)
 temp = None
 while opcion != "5":
-    print("Menu:")
-    print("1- Alumno")
-    print("2- Profesor")
-    print("3- Platos")
-    print("4- Pedidos")
-    print("5- Salir")
-
+    MenuBase()
     opcion = input()
 
+    ##Alumno
     while opcion == "1":
-        print("1- Añadir")
-        print("2- Modificar")
-        print("3- Eliminar")
-        print("4- Volver")
+        MenuAMEV()
 
         opcionB = input()
 
@@ -39,11 +31,9 @@ while opcion != "5":
         elif opcionB == "4":
             opcion = 0
 
+    ##Profesor
     while opcion == "2":
-        print("1- Añadir")
-        print("2- Modificar")
-        print("3- Eliminar")
-        print("4- Volver")
+        MenuAMEV()
 
         opcionB = input()
 
@@ -60,19 +50,27 @@ while opcion != "5":
         elif opcionB == "4":
             opcion = 0
 
+    ##Platos
     while opcion == "3":
-        print("1- Añadir")
-        print("2- Modificar")
-        print("3- Eliminar")
-        print("4- Volver")
-
+        MenuAMEV()
         opcionB = input()
 
+        if opcion == "1":
+            CrearPlato(Sis)
+
+        elif opcionB == "2":
+            temp = input("Ingrese el nombre del plato")
+            ModificarPlato(Sis, temp)
+
+        elif opcionB == "3":
+            EliminarPlato(Sis)
+
+        elif opcionB == "4":
+            opcion = 0
+
+    ##Pedidos
     while opcion == "4":
-        print("1- Añadir")
-        print("2- Modificar")
-        print("3- Eliminar")
-        print("4- Volver")
+        MenuAMEV()
 
         opcionB = input()
 
@@ -80,8 +78,8 @@ while opcion != "5":
             CrearPedido(Sis)
 
         elif opcionB == "2":
-            O = input("Ingrese la persona del pedido")
-            ModificarPedido(Sis, O)
+            temp = input("Ingrese la persona del pedido")
+            ModificarPedido(Sis, temp)
 
         elif opcionB == "3":
             EliminarPedido(Sis)

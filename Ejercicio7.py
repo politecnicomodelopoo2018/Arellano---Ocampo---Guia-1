@@ -178,7 +178,7 @@ def ModificarPedido (sis, persona):
                 if A == "2":
                     B = input("Plato nuevo")
                     item.setPlato(B)
-                if A == "3":
+                if A =="3":
                     B = input("Persona nueva")
                     for met in sis.listaPersonas:
                         if met == B:
@@ -202,12 +202,30 @@ def EliminarDeListaPersona (Sis):
             Sis.listaPersonas.remove(item)
 
 def EliminarPedido (Sis):
-    O = input("Persona pedido")
+    temp = input("Persona pedido")
     for item in Sis.bufet.listaPedidos:
-        if item.nombre == O:
+        if item.nombre == temp:
             Sis.bufet.listaPedidos.remove(item)
 
+def EliminarPlato (Sis):
+    temp = input("Ingrese el plato a borrar")
+    for item in Sis.bufet.listaPlatos:
+        if item.nombre == temp:
+            Sis.bufet.listaPlatos.remove(item)
 
+def MenuBase():
+    print("Menu:")
+    print("1- Alumno")
+    print("2- Profesor")
+    print("3- Platos")
+    print("4- Pedidos")
+    print("5- Salir")
+
+def MenuAMEV():
+    print("1- Añadir")
+    print("2- Modificar")
+    print("3- Eliminar")
+    print("4- Volver")
 
 
 
