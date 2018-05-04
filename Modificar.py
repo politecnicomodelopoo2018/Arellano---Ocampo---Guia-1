@@ -1,3 +1,5 @@
+from Persona import *
+
 def ModificarPersona (sis, nombre):
     A = 0
     for item in sis.listaPersonas:

@@ -1,3 +1,7 @@
+from Persona import *
+from Plato import *
+from Pedido import *
+
 def CrearAlumno (Sis):
     A = Alumno()
     A.setNombre(input("Ingrese el nombre:"))
@@ -21,14 +25,21 @@ def CrearPlato (Sis):
 def CrearPedido (Sis):
     PD = Pedido()
     O = input("Fecha Creacion:")
+    print("Cargando ", O)
     PD.setFechaCreacion(O)
     O = input("Plato")
-    for item in Sis.bufet.listaPedidos:
+    print("Cargando ", O)
+    for item in Sis.bufet.listaPlatos:
         if item.nombre == O:
+            print("Encontre ", item.nombre)
             PD.setPlato(item)
     O = input("Persona")
+    print("Cargando ", O)
     for item in Sis.listaPersonas:
         if item.nombre == O:
+            print("Encontre ", item.nombre)
             PD.setPersona(item)
     O = input("Hora de Entrega:")
+    print("Cargando ", O)
     PD.setHoraEntrega(O)
+    Sis.bufet.listaPedidos.append(PD)

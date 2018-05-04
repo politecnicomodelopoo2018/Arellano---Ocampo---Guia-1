@@ -13,13 +13,12 @@ def MenuAMEV():
     print("3- Eliminar")
     print("4- Volver")
 
+## Corregir esto
+
 def Lista(Sis):
     for item in Sis.bufet.listaPedidos:
-        if type(item.persona) == Profesor:
-            print(item.nombre, item.plato.precio*item.persona.descuento)
-        else:
-            print(item.nombre, item.plato.precio)
-    wait = input("Press enter")
+        print(item.persona.nombre, item.plato.precio * (100-int(item.persona.getDescuento())))
+
 
 
 

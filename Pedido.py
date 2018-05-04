@@ -19,3 +19,6 @@ class Pedido (object):
 
     def setEntregado (self, entregado):
         self.engregado = entregado
+
+    def getPrecio(self):
+        return self.plato.precio * self.persona.getDescuento()

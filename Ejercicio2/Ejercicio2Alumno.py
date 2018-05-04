@@ -1,4 +1,4 @@
-from Ejercicio2Materia import Materia
+from Ejercicio2.Ejercicio2Materia import Materia
 
 
 class Alumno(object):

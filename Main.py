@@ -1,5 +1,11 @@
 
-from Ejercicio7 import *
+from Colegio import *
+from Funciones import *
+from Eliminar import *
+from Crear import *
+from Modificar import *
+from Bufet import *
+
 
 menu = True
 opcion = 0
@@ -89,6 +95,7 @@ while opcion != "6":
 
     if opcion == "5":
         Lista(Sis)
+        X = input("Enter para continuar")
 
 
 
