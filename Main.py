@@ -93,6 +93,7 @@ while opcion != "6":
         elif opcionB == "4":
             opcion = 0
 
+    ##Lista
     if opcion == "5":
         Lista(Sis)
         X = input("Enter para continuar")

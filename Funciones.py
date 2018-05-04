@@ -13,11 +13,12 @@ def MenuAMEV():
     print("3- Eliminar")
     print("4- Volver")
 
-## Corregir esto
-
 def Lista(Sis):
+    if len(Sis.bufet.listaPedidos) < 1:
+        print("Lista Vacia")
+        return
     for item in Sis.bufet.listaPedidos:
-        print(item.persona.nombre, item.plato.precio * (100-int(item.persona.getDescuento())))
+        print(item.persona.nombre, (int(item.plato.precio) / 100) * (100-int(item.persona.getDescuento())))
 
 
 

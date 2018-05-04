@@ -1,6 +1,7 @@
 from Persona import *
 from Plato import *
 from Pedido import *
+import datetime
 
 def CrearAlumno (Sis):
     A = Alumno()
@@ -23,23 +24,34 @@ def CrearPlato (Sis):
     Sis.bufet.listaPlatos.append(PL)
 
 def CrearPedido (Sis):
+
     PD = Pedido()
-    O = input("Fecha Creacion:")
-    print("Cargando ", O)
-    PD.setFechaCreacion(O)
+
+
     O = input("Plato")
-    print("Cargando ", O)
     for item in Sis.bufet.listaPlatos:
         if item.nombre == O:
             print("Encontre ", item.nombre)
             PD.setPlato(item)
+            break
+    if not PD.plato:
+        print("No existe")
+        return
+
     O = input("Persona")
-    print("Cargando ", O)
     for item in Sis.listaPersonas:
         if item.nombre == O:
             print("Encontre ", item.nombre)
             PD.setPersona(item)
+            break
+    if not PD.persona:
+        print("No existe")
+        return
+
+    O = input("Fecha Creacion:")
+    PD.setFechaCreacion(datetime.datetime.strptime(O, "%Y%m%d"))
+
     O = input("Hora de Entrega:")
-    print("Cargando ", O)
     PD.setHoraEntrega(O)
+
     Sis.bufet.listaPedidos.append(PD)
