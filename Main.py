@@ -115,6 +115,12 @@ while opcion != "8":
 
     ##Guardar
     if opcion == "6":
-        SaveGente("ListaPlatos.txt", Sis)
+        SaveGente("ListaPersonas.txt", Sis)
+        SavePlato("ListaPlatos.txt", Sis)
+
+    ##Cargar
+    if opcion == "7":
+        ChargePersonas(Sis, "ListaPersonas.txt")
+        ChargePlato(Sis, "ListaPlatos.txt")
 
 

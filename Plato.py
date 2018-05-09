@@ -9,4 +9,4 @@ class Plato (object):
         self.precio = precio
 
     def pasarGuardar(self):
-        return(self.nombre + "|" + self.precio)
+        return(self.nombre + "|" + self.precio + "\n")

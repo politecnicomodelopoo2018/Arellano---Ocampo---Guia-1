@@ -43,43 +43,47 @@ def ListaPlatos(Sis):
     for item in Sis.bufet.listaPlatos:
         print(item.nombre, "|", item.precio)
 
-def getPersonaFromArchive(archivo):
+def getPersonaFromArchive(line):
     a = Alumno()
     p = Profesor()
-    with open(archivo, "r") as f:
-        for line in f:
-            datos = line.split("|")
-            if datos[0] == "a":
-                a.setNombre(datos[1])
-                a.setApellido(datos[2])
-                a.setDivision(datos[3])
-                return a
-            else:
-                p.setNombre(datos[1])
-                p.setApellido(datos[2])
-                p.setDescuento(datos[3])
-                return p
+    datos = line.split("|")
+    if datos[0] == "a":
+        a.setNombre(datos[1])
+        a.setApellido(datos[2])
+        a.setDivision(datos[3])
+        return a
+    else:
+        p.setNombre(datos[1])
+        p.setApellido(datos[2])
+        p.setDescuento(datos[3])
+        return p
 
-def getPlatoFromArchive(archivo):
+def getPlatoFromArchive(line):
     pl = Plato()
+    datos = line.split("|")
+    pl.setNombre(datos[0])
+    pl.setPrecio(datos[1])
+    return pl
+
+def SavePlato(archivo, sis):
+    with open(archivo, "w") as f:
+        for item in sis.bufet.listaPlatos:
+            f.write(item.pasarGuardar)
+
+def ChargePlato(sis, archivo):
     with open(archivo, "r") as f:
         for line in f:
-            datos = line.split("|")
-            pl.setNombre(datos[0])
-            pl.setPrecio(datos[1])
-            return pl
-
-def LoadPersona(persona, sis):
-    sis.listaPersonas.append(persona)
-
-def LoadPlato(plato, sis):
-    sis.bufet.listaPlatos.append(plato)
+            sis.bufet.listaPlatos.append(getPlatoFromArchive(line))
 
 def SaveGente(archivo, sis):
-    print(sis.listaPersonas[0].pasarGuardar())
     with open(archivo, "w") as f:
         for item in sis.listaPersonas:
             f.write(item.pasarGuardar())
+
+def ChargePersonas(sis, archivo):
+    with open(archivo, "r") as f:
+        for line in f:
+            sis.listaPersonas.append(getPersonaFromArchive(line))
 
 
 
