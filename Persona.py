@@ -11,12 +11,18 @@ class Persona (object):
     def getDescuento(self):
         return 0
 
+    def pasarGuardar(self):
+        return(self.nombre + "|" + self.apellido + "|")
+
 
 class Alumno (Persona):
     division = None
 
     def setDivision (self, division):
         self.division = division
+
+    def pasarGuardar(self):
+        return("a|" + self.nombre + "|" + self.apellido + "|" + self.division)
 
 
 class Profesor (Persona):
@@ -27,3 +33,6 @@ class Profesor (Persona):
 
     def getDescuento(self):
         return self.descuento
+
+    def pasarGuardar(self):
+        return("p|" + self.nombre + "|" + self.apellido + "|" + self.descuento)

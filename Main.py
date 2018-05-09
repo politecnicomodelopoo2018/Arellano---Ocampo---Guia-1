@@ -14,7 +14,7 @@ opcionB = 0
 bufet = Bufet()
 Sis = Colegio(bufet)
 temp = None
-while opcion != "6":
+while opcion != "8":
     MenuBase()
     opcion = input()
 
@@ -113,5 +113,8 @@ while opcion != "6":
         elif opcionB == "4":
             opcion = 0
 
+    ##Guardar
+    if opcion == "6":
+        SaveGente("ListaPlatos.txt", Sis)
 
 

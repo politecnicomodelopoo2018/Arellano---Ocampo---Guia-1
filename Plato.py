@@ -7,3 +7,6 @@ class Plato (object):
 
     def setPrecio(self, precio):
         self.precio = precio
+
+    def pasarGuardar(self):
+        return(self.nombre + "|" + self.precio)
