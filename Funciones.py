@@ -31,17 +31,17 @@ def ListaGente(Sis):
         return
     for item in Sis.listaPersonas:
         if type(item) is Alumno:
-            print("A|",item.nombre, "|", item.apellido, "|", item.division)
+            print("Alumno-",item.nombre, "-", item.apellido, "-", item.division)
     for item in Sis.listaPersonas:
         if type(item) is Profesor:
-            print("P|",item.nombre, "|", item.apellido, "|", item.descuento)
+            print("Profesor-",item.nombre, "-", item.apellido, "-", item.descuento)
 
 def ListaPlatos(Sis):
     if len(Sis.bufet.listaPlatos) < 1:
         print("Lista Vacia")
         return
     for item in Sis.bufet.listaPlatos:
-        print(item.nombre, "|", item.precio)
+        print(item.nombre, "-", item.precio)
 
 def getPersonaFromArchive(line):
     a = Alumno()
