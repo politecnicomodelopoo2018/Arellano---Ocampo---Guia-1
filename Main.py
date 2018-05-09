@@ -7,6 +7,7 @@ from Modificar import *
 from Bufet import *
 
 
+
 menu = True
 opcion = 0
 opcionB = 0
@@ -93,11 +94,24 @@ while opcion != "6":
         elif opcionB == "4":
             opcion = 0
 
-    ##Lista
-    if opcion == "5":
-        Lista(Sis)
-        X = input("Enter para continuar")
-
+    ##Listas
+    while opcion == "5":
+        print("1.Lista Gente")
+        print("2.Lista Platos")
+        print("3.Lista Pedidos")
+        print("4.Volver")
+        opcionB = input()
+        if opcionB == "1":
+            ListaGente(Sis)
+            X = input("Enter para seguir")
+        elif opcionB == "2":
+            ListaPlatos(Sis)
+            X = input("Enter para seguir")
+        elif opcionB == "3":
+            Lista(Sis)
+            X = input("Enter para seguir")
+        elif opcionB == "4":
+            opcion = 0
 
 
 
