@@ -1,87 +1,60 @@
 from Persona import *
-from Plato import *
+from Programa import *
 
-def MenuBase():
-    print("Menu:")
-    print("1- Alumno")
-    print("2- Profesor")
-    print("3- Platos")
-    print("4- Pedidos")
-    print("5- Listas")
-    print("6- Guardar")
-    print("7- Cargar")
-    print("8- Salir")
+def Menu():
+    print("1. Crear Persona")
+    print("2. Crear Programa")
+    print("3. Guardar")
+    print("4. Cargar")
+    print("5. Salir")
 
-def MenuAMEV():
-    print("1- Añadir")
-    print("2- Modificar")
-    print("3- Eliminar")
-    print("4- Volver")
+def CrearConductor():
+    C = Conductor()
+    C.setDni(input("DNI"))
+    C.setApellido(input("Apellido"))
+    C.setNombre(input("Nombre"))
+    C.setFechaIngreso("Fecha")
+    return C
 
-def Lista(Sis):
-    if len(Sis.bufet.listaPedidos) < 1:
-        print("Lista Vacia")
-        return
-    for item in Sis.bufet.listaPedidos:
-        print(item.persona.nombre, (int(item.plato.precio) / 100) * (100-int(item.persona.getDescuento())))
+def CrearOpTecnico():
+    OP = OpTecnico()
+    OP.setDni(input("DNI"))
+    OP.setApellido(input("Apellido"))
+    OP.setNombre(input("Nombre"))
+    OP.setFechaIngreso("Fecha")
+    return OP
 
-def ListaGente(Sis):
-    if len(Sis.listaPersonas) < 1:
-        print("Lista Vacia")
-        return
-    for item in Sis.listaPersonas:
-        if type(item) is Alumno:
-            print("Alumno-",item.nombre, "-", item.apellido, "-", item.division)
-    for item in Sis.listaPersonas:
-        if type(item) is Profesor:
-            print("Profesor-",item.nombre, "-", item.apellido, "-", item.descuento)
+def CrearMusicalizador():
+    M = Musicalizador()
+    M.setDni(input("DNI"))
+    M.setApellido(input("Apellido"))
+    M.setNombre(input("Nombre"))
+    M.setFechaIngreso("Fecha")
+    return M
 
-def ListaPlatos(Sis):
-    if len(Sis.bufet.listaPlatos) < 1:
-        print("Lista Vacia")
-        return
-    for item in Sis.bufet.listaPlatos:
-        print(item.nombre, "-", item.precio)
+def CrearPersona():
+    while X != 4:
+        print("1.Conductor")
+        print("2.OpTecnico")
+        print("3.Musicalizador")
+        print("4.Volver")
+        X = int(input())
+        if X == 1:
+            return CrearConductor()
+        elif X == 2:
+            return CrearOpTecnico()
+        elif X == 3:
+            return CrearMusicalizador()
 
-def getPersonaFromArchive(line):
-    datos = line.split("|")
-    x=eval(datos[0])()
-    x.loadFromString(datos)
-    return x
-
-def getPlatoFromArchive(line):
-    pl = Plato()
-    datos = line.split("|")
-    pl.setNombre(datos[0])
-    pl.setPrecio(datos[1])
-    return pl
-
-def SavePlato(archivo, sis):
-    with open(archivo, "w") as f:
-        for item in sis.bufet.listaPlatos:
-            f.write(item.pasarGuardar)
-
-def ChargePlato(sis, archivo):
-    with open(archivo, "r") as f:
-        for line in f:
-            sis.bufet.listaPlatos.append(getPlatoFromArchive(line))
-
-def SaveGente(archivo, sis):
-    with open(archivo, "w") as f:
-        for item in sis.listaPersonas:
-            f.write(item.pasarGuardar())
-
-def ChargePersonas(sis, archivo):
-    with open(archivo, "r") as f:
-        for line in f:
-            sis.listaPersonas.append(getPersonaFromArchive(line))
+def CrearPrograma(categoria):
+    if categoria != "musica":
+        P = ProgramaMusica()
+        P.setNombre(input("Nombre"))
+        P.setCategoria(categoria)
+        P.setMusicalizador()
 
 
-
-
-
-
-
+    P.setNombre(input("Nombre"))
 
 
 

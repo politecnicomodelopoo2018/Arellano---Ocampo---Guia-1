@@ -1,4 +1,4 @@
-from Persona import *
+from Ejercicio7.Persona import *
 
 def ModificarPersona (sis, nombre):
     A = 0

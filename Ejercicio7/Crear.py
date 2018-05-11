@@ -1,6 +1,6 @@
-from Persona import *
-from Plato import *
-from Pedido import *
+from Ejercicio7.Persona import *
+from Ejercicio7.Plato import *
+from Ejercicio7.Pedido import *
 import datetime
 
 def CrearAlumno (Sis):
