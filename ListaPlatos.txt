@@ -1,2 +1,0 @@
-latas|50
-papas|100

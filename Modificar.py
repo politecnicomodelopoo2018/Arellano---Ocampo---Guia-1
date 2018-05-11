@@ -4,21 +4,22 @@ def ModificarPersona (sis, nombre):
     A = 0
     for item in sis.listaPersonas:
         if item.nombre == nombre:
-            while type(item) is Alumno and A != "4":
-                print("1- Modificar Nombre")
-                print("2- Modificar Apellido")
-                print("3- Modificar Division")
-                print("4- Volver")
-                A = input()
-                if A == "1":
-                    B = input("Nombre nuevo:")
-                    item.setNombre(B)
-                if A == "2":
-                    B = input("Apellido nuevo:")
-                    item.setApellido(B)
-                if A == "3":
-                    B = input("Division nueva:")
-                    item.setDivision(B)
+            if type(item) is Alumno:
+                while A != "4":
+                    print("1- Modificar Nombre")
+                    print("2- Modificar Apellido")
+                    print("3- Modificar Division")
+                    print("4- Volver")
+                    A = input()
+                    if A == "1":
+                        B = input("Nombre nuevo:")
+                        item.setNombre(B)
+                    if A == "2":
+                        B = input("Apellido nuevo:")
+                        item.setApellido(B)
+                    if A == "3":
+                        B = input("Division nueva:")
+                        item.setDivision(B)
 
             while type(item) is Profesor and A != "4":
                 print("1-Modificar Nombre")

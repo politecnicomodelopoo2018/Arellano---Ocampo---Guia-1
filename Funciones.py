@@ -44,19 +44,10 @@ def ListaPlatos(Sis):
         print(item.nombre, "-", item.precio)
 
 def getPersonaFromArchive(line):
-    a = Alumno()
-    p = Profesor()
     datos = line.split("|")
-    if datos[0] == "a":
-        a.setNombre(datos[1])
-        a.setApellido(datos[2])
-        a.setDivision(datos[3])
-        return a
-    else:
-        p.setNombre(datos[1])
-        p.setApellido(datos[2])
-        p.setDescuento(datos[3])
-        return p
+    x=eval(datos[0])()
+    x.loadFromString(datos)
+    return x
 
 def getPlatoFromArchive(line):
     pl = Plato()
