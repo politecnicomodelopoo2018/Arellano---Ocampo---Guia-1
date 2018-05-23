@@ -1,0 +1,19 @@
+{
+    "personas": [
+        {
+            "apellido": "Gomez",
+            "fechaNac": "20/5/18",
+            "nombre": "Luis"
+        },
+        {
+            "apellido": "Ocampo",
+            "fechaNac": "4/6/12",
+            "nombre": "Jorge"
+        },
+        {
+            "apellido": "Luisñ",
+            "fechaNac": "4/7/4",
+            "nombre": "Juan"
+        }
+    ]
+}

@@ -1,5 +1,5 @@
-from Funciones import *
-from Radio import *
+from Ejercicio8.Funciones import *
+from Ejercicio8.Radio import *
 
 Radio = Radio()
 

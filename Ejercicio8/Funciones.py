@@ -1,5 +1,5 @@
-from Persona import *
-from Programa import *
+from Ejercicio8.Persona import *
+from Ejercicio8.Programa import *
 
 def Menu():
     print("1. Crear Persona")
@@ -52,6 +52,7 @@ def CrearPrograma(categoria):
         P.setNombre(input("Nombre"))
         P.setCategoria(categoria)
         P.setMusicalizador()
+
 
 
     P.setNombre(input("Nombre"))
