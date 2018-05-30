@@ -1,5 +1,5 @@
 import json
-import datetime
+from datetime import *
 
 def recuperarPersona(valor):
     P = Persona(valor["nombre"], valor["apellido"], valor["fechaNac"])
@@ -12,38 +12,38 @@ class Persona (object):
         self.apellido = apellido
         self.fechaNac = fechaNac
 
+    def serlizar(self):
+        d = {
+            "nombre": self.nombre,
+            "apellido": self.apellido,
+            "fechaNac": (str(self.fechaNac.year) + "/" + str(self.fechaNac.month) + "/" + str(self.fechaNac.day))
+        }
+        return d
 
+    def descerializar(self, dict):
+        self.nombre = dict["nombre"]
+        self.apellido = dict["apellido"]
+        self.fechaNac = datetime.strptime(dict["fechaNac"], "%Y/%m/%d")
 
 P1 = Persona("Luis", "Gomez", datetime(2000, 10, 25))
-P2 = Persona("Jorge", "Ocampo", datetime(2001, 9, 3))
+P2 = Persona("Jorge", "Ocaño", datetime(2001, 9, 3))
 P3 = Persona("Juan", "Luisñ", datetime(2000, 5, 3))
 
 ListaPersonas = [P1, P2, P3]
 
-with open("hola.txt", "r") as f:
-    esto = json.load(f)
+d = d = {"persona": []}
 
-d = esto
-
-for item in d["personas"]:
-    ListaPersonas.append(recuperarPersona(item))
-
-print(d["personas"][0])
-
-
-
-
-d = {"personas": []}
 
 for item in ListaPersonas:
-    d["personas"].append(item.__dict__)
+    d["persona"].append(item.serlizar())
 
+with open("hola.json", "w") as f:
+    f.write(json.dumps(d, ensure_ascii= False, indent=4))
 
+with open("hola.json", "r") as f:
+    d = json.loads(f.read())
 
-with open("hola.txt", "w") as f:
-    for item in d["personas"]:
-        f.write(json.dumps(d, ensure_ascii=False, indent=4))
-
-
-//eiojgijioe5yioetjgijkghrtjgh
-//Hola este es un cambio
+for item in d["persona"]:
+    unaPersona = Persona(None, None, None)
+    unaPersona.descerializar(item)
+    ListaPersonas.append(unaPersona)
