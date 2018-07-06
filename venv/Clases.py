@@ -1,3 +1,5 @@
+import pymysql
+
 class DB (object):
     __instance = None
     __host = None
@@ -8,7 +10,7 @@ class DB (object):
     def __new__(cls):
         if DB.__instance is None:
             DB.__instance = object.__new__(cls)
-            return DB.__instance
+        return DB.__instance
 
     def setConnection(self, host, user, passwd, db):
         self.__host = host
@@ -47,10 +49,7 @@ class Persona (object):
         else:
             self.actualizate()
 
-    def cargate(self):
-        DB().run("SELECT * FROM ")
-
-    def deserlializar(self, dict):
+    def deserializar(self, dict):
         self.nombre = dict["Nombre"]
         self.apellido = dict["Apellido"]
 
@@ -62,26 +61,34 @@ class Autor (Persona):
         self.generoPrincipal = generoPrincipal
 
     def insertate(self):
-        DB().run("INSERT INTO Autor VALUES (NULL, %s, %s, %s)" %(self.nombre, self.apellido, self.generoPrincipal))
+        DB().run("INSERT INTO Autor VALUES (NULL, '%s', '%s', '%s')" %(self.nombre, self.apellido, self.generoPrincipal))
 
     def actualizate(self):
-        DB().run("UPDATE Autor SET Nombre = %s, Apellido = %s, GeneroPrincipal = %s WHERE idAutor = %i"
+        DB().run("UPDATE Autor SET Nombre = '%s', Apellido = '%s', GeneroPrincipal = '%s' WHERE idAutor = %i"
                  %(self.nombre, self.apellido, self.generoPrincipal, self.id))
 
-    def deserlializar(self, dict):
+    def eliminate(self):
+        DB().run("DELETE FROM Autor WHERE idAutor = %i" %self.id)
+
+    def deserializar(self, dict):
         super().deserlializar(self, dict)
         self.id = dict["idAutor"]
         self.generoPrincipal = dict["GeneroPrincipal"]
 
+
+
 class Dueño (Persona):
 
     def insertate(self):
-        DB().run("INSERT INTO Dueño VALUES (NULL, %s, %s)" %(self.nombre, self.apellido))
+        DB().run("INSERT INTO Dueño VALUES (NULL, '%s', '%s');" %(self.nombre, self.apellido))
 
     def actualizate(self):
-        DB().run("UPDATE Dueño SET Nombre = %s, Apellido = %s WHERE idDueño = %i"
+        DB().run("UPDATE Dueño SET Nombre = '%s', Apellido = '%s' WHERE idDueño = %i"
                  %(self.nombre, self.apellido, self.id))
 
-    def deserlializar(self, dict):
+    def eliminate(self):
+        DB().run("DELETE FROM Dueño WHERE idDueño = %i" %self.id)
+
+    def deserializar(self, dict):
         super().deserlializar(self, dict)
         self.id = dict["idDueño"]
