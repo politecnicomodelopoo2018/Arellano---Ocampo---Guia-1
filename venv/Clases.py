@@ -43,8 +43,8 @@ class Persona (object):
     def actualizate(self):
         pass
 
-    def guardate(self):
-        if self.id is None:
+    def guardate(self, id):
+        if id is "Null":
             self.insertate()
         else:
             self.actualizate()
@@ -61,7 +61,7 @@ class Autor (Persona):
         self.generoPrincipal = generoPrincipal
 
     def insertate(self):
-        DB().run("INSERT INTO Autor VALUES (NULL, '%s', '%s', '%s')" %(self.nombre, self.apellido, self.generoPrincipal))
+        DB().run("INSERT INTO Autor VALUES (NULL, '%s', '%s')" %(self.nombre, self.generoPrincipal))
 
     def actualizate(self):
         DB().run("UPDATE Autor SET Nombre = '%s', Apellido = '%s', GeneroPrincipal = '%s' WHERE idAutor = %i"
@@ -79,6 +79,10 @@ class Autor (Persona):
 
 class Dueño (Persona):
 
+    def deserializar(self, dict):
+        super().deserlializar(self, dict)
+        self.id = dict["idDueño"]
+
     def insertate(self):
         DB().run("INSERT INTO Dueño VALUES (NULL, '%s', '%s');" %(self.nombre, self.apellido))
 
@@ -89,6 +93,61 @@ class Dueño (Persona):
     def eliminate(self):
         DB().run("DELETE FROM Dueño WHERE idDueño = %i" %self.id)
 
-    def deserializar(self, dict):
-        super().deserlializar(self, dict)
-        self.id = dict["idDueño"]
+class Libro (object):
+    idLibro = None
+    titulo = None
+    cantPaginas = None
+    autor = None
+
+
+
+    def deserializar(self, dict, autor):
+        self.idLibro = dict["idLibro"]
+        self.titulo = dict["Titulo"]
+        self.cantPaginas = dict["Direccion"]
+        self.autor = autor
+
+    def insertate(self):
+        DB().run("INSERT INTO Libro VALUES (NULL, '%s', %i, %i)" %(self.titulo, self.cantPaginas, self.autor.idAutor))
+
+    def actualizate(self):
+        DB().run("UPDATE Libro SET Titulo = '%s', CantPaginas = %i, Autor = %i WHERE idLibro = %i" %(self.titulo, self.cantPaginas, self.autor.idAutor, self.idLibro))
+
+    def eliminate(self):
+        DB().run("DELETE FROM Libro WHERE idLibro = %i" %self.idLibro)
+
+    def guardate(self):
+        if self.id is None:
+            self.insertate()
+        else:
+            self.actualizate()
+
+class Libreria (object):
+    idLibreria = None
+    nombre = None
+    direccion = None
+    dueño = None
+
+    def __init__(self):
+        self.listaLibros = []
+
+    def deserializar(self, dict, dueño, listaLibros):
+        self.idLibreria = dict["idLibreria"]
+        self.nombre = dict["Nombre"]
+        self.direccion = dict["Direccion"]
+        self.dueño = dueño
+        self.listaLibros = listaLibros
+
+    def insertate(self):
+        DB().run("INSERT INTO Libreria VALUES (NULL, '%s', '%s', %i)" %(self.nombre, self.direccion, self.dueño.idDueño))
+        for item in self.listaLibros:
+            DB().run("INSERT INTO Libreria_has_Libro VALUES (%i, %i)" %(self.idLibreria, item.idLibro))
+
+    def actualizate(self):
+        DB().run("UPDATE Libreria SET Nombre = '%s', Direccion = '%s', Dueño = %i WHERE idLibreria = %i" %(self.nombre, self.direccion, self.dueño.idDueño, self.idLibreria))
+
+    def eliminate(self):
+        DB().run("DELETE FROM Libreria WHERE idLibreria = %i" %self.idLibreria)
+
+    # def eliminarLibro
+    # def añadirLibro
