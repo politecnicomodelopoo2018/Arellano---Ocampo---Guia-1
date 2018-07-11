@@ -44,7 +44,7 @@ class Persona (object):
         pass
 
     def guardate(self, id):
-        if id is "Null":
+        if self.id is None:
             self.insertate()
         else:
             self.actualizate()
@@ -71,16 +71,15 @@ class Autor (Persona):
         DB().run("DELETE FROM Autor WHERE idAutor = %i" %self.id)
 
     def deserializar(self, dict):
-        super().deserlializar(self, dict)
+        super().deserializar(dict)
         self.id = dict["idAutor"]
         self.generoPrincipal = dict["GeneroPrincipal"]
-
 
 
 class Dueño (Persona):
 
     def deserializar(self, dict):
-        super().deserlializar(self, dict)
+        super().deserializar(dict)
         self.id = dict["idDueño"]
 
     def insertate(self):
