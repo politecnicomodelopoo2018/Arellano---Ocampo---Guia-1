@@ -26,7 +26,6 @@ class DB (object):
 class Persona (object):
     id = None
     nombre = None
-    apellido = None
 
     def setId(self, id):
         self.id = id
@@ -51,7 +50,6 @@ class Persona (object):
 
     def deserializar(self, dict):
         self.nombre = dict["Nombre"]
-        self.apellido = dict["Apellido"]
 
 class Autor (Persona):
     generoPrincipal = None
@@ -77,9 +75,11 @@ class Autor (Persona):
 
 
 class Dueño (Persona):
+    apellido = None
 
     def deserializar(self, dict):
         super().deserializar(dict)
+        self.apellido
         self.id = dict["idDueño"]
 
     def insertate(self):
