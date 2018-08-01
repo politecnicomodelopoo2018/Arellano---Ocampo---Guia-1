@@ -3,26 +3,31 @@ from Clases import *
 
 def traerAutor(id):
     autor = Autor()
-    dict = DB().run("SELECT * FROM Autor WHERE idAutor = %i" %id)
+    cur = DB().run("SELECT * FROM Autor WHERE idAutor = %i" %id)
+    dict = cur.fetchone()
     autor.deserializar(dict)
     return autor
 
 def traerDueño(id):
     dueño = Dueño()
-    dict = DB().run("SELECT * FROM Dueño WHERE idDueño = %i" %id)
+    cur = DB().run("SELECT * FROM Dueño WHERE idDueño = %i" %id)
+    dict = cur.fetchone()
     dueño.deserializar(dict)
     return dueño
 
 def traerLibro(id):
     libro = Libro()
-    dict = DB().run("SELECT * FROM Libro WHERE idLibro = %i" %id)
+    cur = DB().run("SELECT * FROM Libro WHERE idLibro = %i" %id)
+    dict = cur.fetchone()
     autor = traerAutor(dict["Autor_idAutor"])
     libro.deserializar(dict, autor)
     return libro
 
 def traerLibreria(id):
     libreria = Libreria()
-    dict = DB().run("SELECT * FROM Libreria WHERE idLibreria = %%i" %id)
+    cur = DB().run("SELECT * FROM Libreria WHERE idLibreria = %%i" %id)
+    dict = cur.fetchone()
     dueño = traerDueño(dict["Dueño_idDueño"])
     libreria.deserializar(dict, dueño)
     return libreria
+

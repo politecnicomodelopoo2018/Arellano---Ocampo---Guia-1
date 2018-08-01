@@ -22,6 +22,7 @@ class DB (object):
         db = pymysql.connect(host=self.__host, user=self.__user, passwd=self.__passwd, db=self.__db, charset='utf8', autocommit=True)
         cursorDB = db.cursor(pymysql.cursors.DictCursor)
         cursorDB.execute(query)
+        return cursorDB
 
 class Persona (object):
     id = None
@@ -79,7 +80,7 @@ class Dueño (Persona):
 
     def deserializar(self, dict):
         super().deserializar(dict)
-        self.apellido
+        self.apellido = dict["Apellido"]
         self.id = dict["idDueño"]
 
     def insertate(self):
