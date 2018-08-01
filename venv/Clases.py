@@ -43,7 +43,7 @@ class Persona (object):
     def actualizate(self):
         pass
 
-    def guardate(self, id):
+    def guardate(self):
         if self.id is None:
             self.insertate()
         else:
@@ -63,8 +63,8 @@ class Autor (Persona):
         DB().run("INSERT INTO Autor VALUES (NULL, '%s', '%s')" %(self.nombre, self.generoPrincipal))
 
     def actualizate(self):
-        DB().run("UPDATE Autor SET Nombre = '%s', Apellido = '%s', GeneroPrincipal = '%s' WHERE idAutor = %i"
-                 %(self.nombre, self.apellido, self.generoPrincipal, self.id))
+        DB().run("UPDATE Autor SET Nombre = '%s', GeneroPrincipal = '%s' WHERE idAutor = %i"
+                 %(self.nombre, self.generoPrincipal, self.id))
 
     def eliminate(self):
         DB().run("DELETE FROM Autor WHERE idAutor = %i" %self.id)
@@ -99,25 +99,32 @@ class Libro (object):
     cantPaginas = None
     autor = None
 
+    def setTitulo (self, titulo):
+        self.titulo = titulo
 
+    def setCantPaginas(self, cantPaginas):
+        self.cantPaginas = cantPaginas
+
+    def setAutor(self, autor):
+        self.autor = autor
 
     def deserializar(self, dict, autor):
         self.idLibro = dict["idLibro"]
         self.titulo = dict["Titulo"]
-        self.cantPaginas = dict["Direccion"]
+        self.cantPaginas = dict["CantPaginas"]
         self.autor = autor
 
     def insertate(self):
-        DB().run("INSERT INTO Libro VALUES (NULL, '%s', %i, %i)" %(self.titulo, self.cantPaginas, self.autor.idAutor))
+        DB().run("INSERT INTO Libro VALUES (NULL, '%s', %i, %i)" %(self.titulo, self.cantPaginas, self.autor.id))
 
     def actualizate(self):
-        DB().run("UPDATE Libro SET Titulo = '%s', CantPaginas = %i, Autor = %i WHERE idLibro = %i" %(self.titulo, self.cantPaginas, self.autor.idAutor, self.idLibro))
+        DB().run("UPDATE Libro SET Titulo = '%s', CantPaginas = %i, Autor_idAutor = %i WHERE idLibro = %i" %(self.titulo, self.cantPaginas, self.autor.id, self.idLibro))
 
     def eliminate(self):
         DB().run("DELETE FROM Libro WHERE idLibro = %i" %self.idLibro)
 
     def guardate(self):
-        if self.id is None:
+        if self.idLibro is None:
             self.insertate()
         else:
             self.actualizate()
