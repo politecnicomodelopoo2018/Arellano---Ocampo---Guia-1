@@ -25,9 +25,13 @@ def traerLibro(id):
 
 def traerLibreria(id):
     libreria = Libreria()
-    cur = DB().run("SELECT * FROM Libreria WHERE idLibreria = %%i" %id)
+    cur = DB().run("SELECT * FROM Libreria WHERE idLibreria = %i" %id)
     dict = cur.fetchone()
     dueño = traerDueño(dict["Dueño_idDueño"])
+    cur = DB().run("SELECT * FROM Libreria_hasLibro WHERE Libreria_idLibreria = %i" %id)
+    lista = cur.fetchall()
+    for item in lista:
+        listaLibros.append(traerLibro(item))
     libreria.deserializar(dict, dueño)
     return libreria
 

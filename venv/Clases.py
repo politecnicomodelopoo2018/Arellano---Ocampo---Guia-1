@@ -138,6 +138,24 @@ class Libreria (object):
     def __init__(self):
         self.listaLibros = []
 
+    def setNombre(self, nombre):
+        self.nombre = nombre
+
+    def setDireccion(self, direccion):
+        self.direccion = direccion
+
+    def setDueño(self, dueño):
+        self.dueño = dueño
+
+    def setListaLibros(self, listaLibros):
+        self.listaLibros = listaLibros
+
+    def addLibro(self, libro):
+        self.listaLibros.append(libro)
+
+    def removeLibro(self, libro):
+        self.listaLibros.remove(libro)
+
     def deserializar(self, dict, dueño, listaLibros):
         self.idLibreria = dict["idLibreria"]
         self.nombre = dict["Nombre"]
@@ -155,6 +173,3 @@ class Libreria (object):
 
     def eliminate(self):
         DB().run("DELETE FROM Libreria WHERE idLibreria = %i" %self.idLibreria)
-
-    # def eliminarLibro
-    # def añadirLibro
