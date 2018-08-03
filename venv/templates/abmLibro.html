@@ -2,9 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>AbmLibro</title>
 </head>
 <body>
-
+    <table width="40%" style="text-align:center" border = "1;">
+        <tr>
+            <th>ID</th>
+            <th>Titulo</th>
+            <th>CantPaginas</th>
+            <th>Autor</th>
+            <th>Baja</th>
+            <th>Modificacion</th>
+        </tr>
+        {% for libro in ListaLibros %}
+        <tr>
+            <td>{{libro.idLibro}}</td>
+            <td>{{libro.titulo}}</td>
+            <td>{{libro.cantPaginas}}</td>
+            <td>{{libro.autor.nombre}}</td>
+            <td><a href="/bajaLibro.html" ><button>Baja</button></a></td>
+            <td><a href="/modificacionDueño.html" ><button>Baja</button></a></td>
+        </tr>
+        {% endfor %}
+    </table>
 </body>
 </html>

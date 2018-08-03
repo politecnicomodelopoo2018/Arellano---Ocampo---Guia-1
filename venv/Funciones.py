@@ -50,3 +50,11 @@ def getAllAutores():
     for item in listaDict:
         listaAutores.append(traerAutor(item["idAutor"]))
     return listaAutores
+
+def getAllLibros():
+    cur = DB().run("SELECT idLibro FROM Libro")
+    listaDict = cur.fetchall()
+    listaLibros = []
+    for item in listaDict:
+        listaLibros.append(traerLibro(item["idLibro"]))
+    return listaLibros

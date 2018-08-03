@@ -14,10 +14,10 @@ DB().setConnection('127.0.0.1','root', 'alumno', 'PruebaLibreria')
 app = Flask(__name__, static_url_path='/static')
 
 
-lista = getAllAutores()
+lista = getAllLibros()
 
 for item in lista:
-    print(item.nombre)
+    print(item.cantPaginas)
 
 @app.route('/')
 def Index():
@@ -39,7 +39,7 @@ def AbmAutor():
 
 @app.route('/abmLibro.html')
 def AbmLibro():
-    return render_template("abmLibro.html", ListaLibros=getAll)
+    return render_template("abmLibro.html", ListaLibros=getAllLibros())
 
 
 
