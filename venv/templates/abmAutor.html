@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AbmAutor</title>
+</head>
+<body>
+    <table width="40%" style="text-align:center" border = "1;">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Genero Principal</th>
+            <th>Baja</th>
+            <th>Modificacion</th>
+        </tr>
+        {% for autor in ListaAutores %}
+        <tr>
+            <td>{{autor.id}}</td>
+            <td>{{autor.nombre}}</td>
+            <td>{{autor.generoPrincipal}}</td>
+            <td><a href="/bajaAutor.html" ><button>Baja</button></a></td>
+            <td><a href="/modificacionAutor.html" ><button>Modificacion</button></a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

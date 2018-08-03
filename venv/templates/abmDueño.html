@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AbmDueño</title>
+</head>
+<body>
+    <table width="40%" style="text-align:center" border = "1;">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Baja</th>
+            <th>Modificacion</th>
+        </tr>
+        {% for dueño in ListaDueños %}
+        <tr>
+            <td>{{dueño.id}}</td>
+            <td>{{dueño.nombre}}</td>
+            <td>{{dueño.apellido}}</td>
+            <td><a href="/bajaDueño.html" ><button>Baja</button></a></td>
+            <td><a href="/modificacionDueño.html" ><button>Modificacion</button></a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

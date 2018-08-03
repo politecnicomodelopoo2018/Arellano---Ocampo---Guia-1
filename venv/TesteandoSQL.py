@@ -1,4 +1,8 @@
 import pymysql
+from flask import Flask
+from flask import render_template
+from flask import redirect
+from flask import request
 from DBClass import *
 from PersonaClass import *
 from LibreriaClass import *
@@ -7,33 +11,40 @@ from Funciones import *
 
 DB().setConnection('127.0.0.1','root', 'alumno', 'PruebaLibreria')
 
-d1 = Dueño()
-d1 = traerDueño(1)
-d1.setNombre("lope")
-d1.setApellido("lopez")
-d1.guardate()
+app = Flask(__name__, static_url_path='/static')
 
-d1.setNombre("lalalala")
-d1.guardate()
-a1 = Autor()
-a1 = traerAutor(1)
-a1.setNombre("cucolo")
-a1.setApellido("paralana")
-a1.setGeneroPrincipal("rock")
-a1.guardate()
-a1 = traerAutor(1)
 
-l1 = Libro()
-l1 = traerLibro(1)
-l1.setTitulo("la caka")
-l1.setCantPaginas(22)
-l1.setAutor(a1)
-l1.guardate()
-l1 = traerLibro(1)
+lista = getAllAutores()
 
-lib1 = Libreria()
-lib1 = traerLibreria(1)
-lib1.setNombre("librin")
-lib1.setDireccion("caracas 2334")
-lib1.setDueño(d1)
-lib1.guardate()
+for item in lista:
+    print(item.nombre)
+
+@app.route('/')
+def Index():
+    return redirect("/paginaPrincipal.html")
+
+
+@app.route('/paginaPrincipal.html')
+def PaginaPrincipal():
+    return render_template("paginaPrincipal.html")
+
+
+@app.route('/abmDueño.html')
+def AbmDueño():
+    return render_template("abmDueño.html",  ListaDueños=getAllDueños())
+
+@app.route('/abmAutor.html')
+def AbmAutor():
+    return render_template("abmAutor.html",  ListaAutores=getAllAutores())
+
+@app.route('/abmLibro.html')
+def AbmLibro():
+    return render_template("abmLibro.html", ListaLibros=getAll)
+
+
+
+
+
+if __name__ == '__main__':  # para actualizar automaticamente la pagina sin tener que cerrarla
+    app.run(debug=True) # para correr la pagina se puede hacer en este caso "python3 PruebaFlask.py" en la terminal
+

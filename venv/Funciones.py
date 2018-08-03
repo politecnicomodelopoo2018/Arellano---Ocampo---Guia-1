@@ -35,3 +35,18 @@ def traerLibreria(id):
     libreria.deserializar(dict, dueño)
     return libreria
 
+def getAllDueños():
+    cur = DB().run("SELECT idDueño FROM Dueño")
+    listaDict = cur.fetchall()
+    listaDueños = []
+    for item in listaDict:
+        listaDueños.append(traerDueño(item["idDueño"]))
+    return listaDueños
+
+def getAllAutores():
+    cur = DB().run("SELECT idAutor FROM Autor")
+    listaDict = cur.fetchall()
+    listaAutores = []
+    for item in listaDict:
+        listaAutores.append(traerAutor(item["idAutor"]))
+    return listaAutores
