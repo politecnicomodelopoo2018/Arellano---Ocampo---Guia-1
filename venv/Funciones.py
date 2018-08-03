@@ -1,5 +1,9 @@
 import pymysql
-from Clases import *
+from DBClass import *
+from PersonaClass import *
+from LibreriaClass import *
+from LibroClass import *
+from Funciones import *
 
 def traerAutor(id):
     autor = Autor()
@@ -28,10 +32,6 @@ def traerLibreria(id):
     cur = DB().run("SELECT * FROM Libreria WHERE idLibreria = %i" %id)
     dict = cur.fetchone()
     dueño = traerDueño(dict["Dueño_idDueño"])
-    cur = DB().run("SELECT * FROM Libreria_hasLibro WHERE Libreria_idLibreria = %i" %id)
-    lista = cur.fetchall()
-    for item in lista:
-        listaLibros.append(traerLibro(item))
     libreria.deserializar(dict, dueño)
     return libreria
 
