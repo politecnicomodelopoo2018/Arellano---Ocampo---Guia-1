@@ -1,5 +1,7 @@
 import pymysql
 from DBClass import *
+from PersonaClass import *
+from LibroClass import *
 
 class Libreria (object):
     idLibreria = None
@@ -32,10 +34,11 @@ class Libreria (object):
         self.dueño = dueño
 
     def getListaLibros(self):
-        cur = DB().run("SELECT Libro_idLibro FROM Libreria_has_Libro WHERE Libreria_idLibreria = %i" %idLibreria)
+        cur = DB().run("SELECT Libro_idLibro FROM Libreria_has_Libro WHERE Libreria_idLibreria = %i" %self.idLibreria)
         lista = cur.fetchall()
+        listaLibro = []
         for item in lista:
-            listaLibro.append(traerLibro(item))
+            listaLibro.append(Libro.traerLibro(item))
         return listaLibro
 
     def insertate(self):
@@ -53,3 +56,21 @@ class Libreria (object):
             self.insertate()
         else:
             self.actualizate()
+
+    @staticmethod
+    def traerLibreria(id):
+        libreria = Libreria()
+        cur = DB().run("SELECT * FROM Libreria WHERE idLibreria = %i" % id)
+        dict = cur.fetchone()
+        dueño = Dueño.traerDueño(dict["Dueño_idDueño"])
+        libreria.deserializar(dict, dueño)
+        return libreria
+
+    @staticmethod
+    def getAllLibrerias():
+        cur = DB().run("SELECT idLibreria FROM Libreria")
+        listaDict = cur.fetchall()
+        listaLibrerias = []
+        for item in listaDict:
+            listaLibrerias.append(Libreria.traerLibreria(item["idLibreria"]))
+        return listaLibrerias

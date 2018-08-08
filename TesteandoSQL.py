@@ -7,14 +7,13 @@ from DBClass import *
 from PersonaClass import *
 from LibreriaClass import *
 from LibroClass import *
-from Funciones import *
 
 DB().setConnection('127.0.0.1','root', 'alumno', 'PruebaLibreria')
 
 app = Flask(__name__, static_url_path='/static')
 
 
-lista = getAllLibros()
+lista = Libro.getAllLibros()
 
 for item in lista:
     print(item.cantPaginas)
@@ -31,23 +30,23 @@ def PaginaPrincipal():
 
 @app.route('/abmDueño')
 def AbmDueño():
-    return render_template("abmDueño.html",  ListaDueños=getAllDueños())
+    return render_template("abmDueño.html",  ListaDueños=Dueño.getAllDueños())
 
 @app.route('/abmAutor')
 def AbmAutor():
-    return render_template("abmAutor.html",  ListaAutores=getAllAutores())
+    return render_template("abmAutor.html",  ListaAutores=Autor.getAllAutores())
 
 @app.route('/abmLibro')
 def AbmLibro():
-    return render_template("abmLibro.html", ListaLibros=getAllLibros())
+    return render_template("abmLibro.html", ListaLibros=Libro.getAllLibros())
 
 @app.route('/abmLibreria')
 def AbmLibreria():
-    return render_template("abmLibreria.html", ListaLibrerias=getAllLibrerias())
+    return render_template("abmLibreria.html", ListaLibrerias=Libreria.getAllLibrerias())
 
 @app.route('/libros')
 def AbmLibros():
-    return render_template("libros.html", ListaLibros=traerLibreria(int(request.args.get("idLibreria"))).getListaLibros())
+    return render_template("libros.html", ListaLibros=Libreria.traerLibreria(int(request.args.get("idLibreria"))).getListaLibros())
 
 
 

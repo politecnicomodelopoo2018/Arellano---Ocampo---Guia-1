@@ -52,6 +52,23 @@ class Autor (Persona):
         self.id = dict["idAutor"]
         self.generoPrincipal = dict["GeneroPrincipal"]
 
+    @staticmethod
+    def traerAutor(id):
+        autor = Autor()
+        cur = DB().run("SELECT * FROM Autor WHERE idAutor = %i" % id)
+        dict = cur.fetchone()
+        autor.deserializar(dict)
+        return autor
+
+    @staticmethod
+    def getAllAutores():
+        cur = DB().run("SELECT idAutor FROM Autor")
+        listaDict = cur.fetchall()
+        listaAutores = []
+        for item in listaDict:
+            listaAutores.append(Autor.traerAutor(item["idAutor"]))
+        return listaAutores
+
 
 class Dueño (Persona):
     apellido = None
@@ -73,3 +90,19 @@ class Dueño (Persona):
     def eliminate(self):
         DB().run("DELETE FROM Dueño WHERE idDueño = %i" %self.id)
 
+    @staticmethod
+    def traerDueño(id):
+        dueño = Dueño()
+        cur = DB().run("SELECT * FROM Dueño WHERE idDueño = %i" % id)
+        dict = cur.fetchone()
+        dueño.deserializar(dict)
+        return dueño
+
+    @staticmethod
+    def getAllDueños():
+        cur = DB().run("SELECT idDueño FROM Dueño")
+        listaDict = cur.fetchall()
+        listaDueños = []
+        for item in listaDict:
+            listaDueños.append(Dueño.traerDueño(item["idDueño"]))
+        return listaDueños

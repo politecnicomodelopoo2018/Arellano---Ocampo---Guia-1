@@ -1,5 +1,6 @@
 import pymysql
 from DBClass import *
+from PersonaClass import *
 
 class Libro (object):
     idLibro = None
@@ -38,3 +39,20 @@ class Libro (object):
         else:
             self.actualizate()
 
+    @staticmethod
+    def traerLibro(id):
+        libro = Libro()
+        cur = DB().run("SELECT * FROM Libro WHERE idLibro = %i" % id)
+        dict = cur.fetchone()
+        autor = Autor.traerAutor(dict["Autor_idAutor"])
+        libro.deserializar(dict, autor)
+        return libro
+
+    @staticmethod
+    def getAllLibros():
+        cur = DB().run("SELECT idLibro FROM Libro")
+        listaDict = cur.fetchall()
+        listaLibros = []
+        for item in listaDict:
+            listaLibros.append(Libro.traerLibro(item["idLibro"]))
+        return listaLibros
