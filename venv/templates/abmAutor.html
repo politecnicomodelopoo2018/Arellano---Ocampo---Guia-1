@@ -18,8 +18,8 @@
             <td>{{autor.id}}</td>
             <td>{{autor.nombre}}</td>
             <td>{{autor.generoPrincipal}}</td>
-            <td><a href="/bajaAutor.html" ><button>Baja</button></a></td>
-            <td><a href="/modificacionAutor.html" ><button>Modificacion</button></a></td>
+            <td><a href="/bajaAutor?idAutor={{autor.idAutor}}"><button>Baja</button></a></td>
+            <td><a href="/modificacionAutor?idAutor={{autor.idAutor}}"><button>Modificacion</button></a></td>
         </tr>
         {% endfor %}
     </table>

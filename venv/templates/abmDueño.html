@@ -18,8 +18,8 @@
             <td>{{dueño.id}}</td>
             <td>{{dueño.nombre}}</td>
             <td>{{dueño.apellido}}</td>
-            <td><a href="/bajaDueño.html" ><button>Baja</button></a></td>
-            <td><a href="/modificacionDueño.html" ><button>Modificacion</button></a></td>
+            <td><a href="/bajaDueño?idDueño={{dueño.idDueño}}"><button>Baja</button></a></td>
+            <td><a href="/modificacionDueño?idDueño={{dueño.idDueño}}"><button>Modificacion</button></a></td>
         </tr>
         {% endfor %}
     </table>

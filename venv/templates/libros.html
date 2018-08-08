@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Libros</title>
+</head>
+<body>
+    <table width="40%" style="text-align:center" border = "1;">
+        <tr>
+            <th>ID</th>
+            <th>Titulo</th>
+            <th>Autor</th>
+            <th>CantPaginas</th>
+        </tr>
+        {% for libro in ListaLibros %}
+        <tr>
+            <th>libro.idLibro</th>
+            <th>libro.titulo</th>
+            <th>libro.autor.nombre</th>
+            <th>libro.cantPaginas<th>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

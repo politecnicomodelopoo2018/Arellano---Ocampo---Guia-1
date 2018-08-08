@@ -20,8 +20,8 @@
             <td>{{libro.titulo}}</td>
             <td>{{libro.cantPaginas}}</td>
             <td>{{libro.autor.nombre}}</td>
-            <td><a href="/bajaLibro.html" ><button>Baja</button></a></td>
-            <td><a href="/modificacionDueño.html" ><button>Baja</button></a></td>
+            <td><a href="/bajaLibro?idLibro={{libro.idLibro}}" ><button>Baja</button></a></td>
+            <td><a href="/modificacionDueño?idLibro={{libro.idLibro}}" ><button>Baja</button></a></td>
         </tr>
         {% endfor %}
     </table>

@@ -29,18 +29,25 @@ def PaginaPrincipal():
     return render_template("paginaPrincipal.html")
 
 
-@app.route('/abmDueño.html')
+@app.route('/abmDueño')
 def AbmDueño():
     return render_template("abmDueño.html",  ListaDueños=getAllDueños())
 
-@app.route('/abmAutor.html')
+@app.route('/abmAutor')
 def AbmAutor():
     return render_template("abmAutor.html",  ListaAutores=getAllAutores())
 
-@app.route('/abmLibro.html')
+@app.route('/abmLibro')
 def AbmLibro():
     return render_template("abmLibro.html", ListaLibros=getAllLibros())
 
+@app.route('/abmLibreria')
+def AbmLibreria():
+    return render_template("abmLibreria.html", ListaLibrerias=getAllLibrerias())
+
+@app.route('/libros')
+def AbmLibros():
+    return render_template("libros.html", ListaLibros=traerLibreria(int(request.args.get("idLibreria"))).getListaLibros())
 
 
 

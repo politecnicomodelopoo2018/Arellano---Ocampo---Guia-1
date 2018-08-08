@@ -58,3 +58,11 @@ def getAllLibros():
     for item in listaDict:
         listaLibros.append(traerLibro(item["idLibro"]))
     return listaLibros
+
+def getAllLibrerias():
+    cur = DB().run("SELECT idLibreria FROM Libreria")
+    listaDict = cur.fetchall()
+    listaLibrerias = []
+    for item in listaDict:
+      listaLibrerias.append(traerLibreria(item["idLibreria"]))
+    return listaLibrerias
