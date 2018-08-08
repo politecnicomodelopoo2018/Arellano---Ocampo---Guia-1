@@ -14,12 +14,14 @@
         </tr>
         {% for libro in ListaLibros %}
         <tr>
-            <th>libro.idLibro</th>
-            <th>libro.titulo</th>
-            <th>libro.autor.nombre</th>
-            <th>libro.cantPaginas<th>
+            <th>{{libro.idLibro}}</th>
+            <th>{{libro.titulo}}</th>
+            <th>{{libro.autor.nombre}}</th>
+            <th>{{libro.cantPaginas}}<th>
         </tr>
         {% endfor %}
     </table>
+    <br>
+    <a href="/abmLibreria" ><button>Volver</button></a>
 </body>
 </html>

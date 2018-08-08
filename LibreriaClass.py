@@ -38,7 +38,7 @@ class Libreria (object):
         lista = cur.fetchall()
         listaLibro = []
         for item in lista:
-            listaLibro.append(Libro.traerLibro(item))
+            listaLibro.append(Libro.traerLibro(item["Libro_idLibro"]))
         return listaLibro
 
     def insertate(self):
