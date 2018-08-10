@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Modificacion Autor</title>
+</head>
+<body>
+<form action="/modificarAutor" method="post">
+        <input type="text" name="idAutor" value="{{Autor.id}}" readonly>
+        <input type="text" name="nombre" value="{{Autor.nombre}}">
+        <input type="text" name="generoPrincipal" value="{{Autor.generoPrincipal}}">
+        <input type="submit" value="Sumbit">
+</form>
+<br>
+<a href="/abmAutor" ><button>Volver</button></a>
+</body>
+</html>

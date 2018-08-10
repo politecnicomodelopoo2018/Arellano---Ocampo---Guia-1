@@ -21,7 +21,7 @@
             <td>{{libro.cantPaginas}}</td>
             <td>{{libro.autor.nombre}}</td>
             <td><a href="/bajaLibro?idLibro={{libro.idLibro}}" ><button>Baja</button></a></td>
-            <td><a href="/modificacionDueño?idLibro={{libro.idLibro}}" ><button>Baja</button></a></td>
+            <td><a href="/modificacionLibro?idLibro={{libro.idLibro}}" ><button>Modificacion</button></a></td>
         </tr>
         {% endfor %}
     </table>

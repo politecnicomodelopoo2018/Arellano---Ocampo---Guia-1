@@ -15,16 +15,16 @@
         </tr>
         {% for libro in ListaLibros %}
         <tr>
-            <th>{{libro.idLibro}}</th>
-            <th>{{libro.titulo}}</th>
-            <th>{{libro.autor.nombre}}</th>
-            <th>{{libro.cantPaginas}}<th>
-            <th><a href="/removerLibro?idLibro={{libro.idLibro}}&idLibreria={{Libreria.idLibreria}}" ><button>Remover</button></a></th>
+            <td>{{libro.idLibro}}</td>
+            <td>{{libro.titulo}}</td>
+            <td>{{libro.autor.nombre}}</td>
+            <td>{{libro.cantPaginas}}</td>
+            <td><a href="/removerLibro?idLibro={{libro.idLibro}}&idLibreria={{Libreria.idLibreria}}" ><button>Remover</button></a></td>
         </tr>
         {% endfor %}
     </table>
     <br>
-    <a href="/seleccionarLibros?idLibreria={{Libreria.idLibreria}}"><button>Añadir</button></a>
     <a href="/abmLibreria" ><button>Volver</button></a>
+    <a href="/seleccionarLibros?idLibreria={{Libreria.idLibreria}}"><button>Añadir</button></a>
 </body>
 </html>

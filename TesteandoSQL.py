@@ -139,6 +139,46 @@ def AñadirLibro():
     libreria.addLibro(libro)
     return render_template("libros.html", ListaLibros=Libreria.traerLibreria(int(request.form.get("idLibreria"))).getListaLibros(), Libreria=libreria)
 
+@app.route('/modificacionDueño')
+def ModificacionDueño():
+    return render_template("modificacionDueño.html", Dueño=Dueño.traerDueño(int(request.args.get("idDueño"))))
+
+@app.route('/modificarDueño', methods=['GET', 'POST'])
+def ModificarDueño():
+    dueño = Dueño()
+    dueño.setId(int(request.form.get("idDueño")))
+    dueño.setNombre(request.form.get("nombre"))
+    dueño.setApellido(request.form.get("apellido"))
+    dueño.guardate()
+    return render_template("abmDueño.html", ListaDueños=Dueño.getAllDueños())
+
+@app.route('/modificacionAutor')
+def ModificacionAutor():
+    return render_template("modificacionAutor.html", Autor=Autor.traerAutor(int(request.args.get("idAutor"))))
+
+@app.route('/modificarAutor', methods=['GET', 'POST'])
+def ModificarAutor():
+    autor = Autor()
+    autor.setId(int(request.form.get("idAutor")))
+    autor.setNombre(request.form.get("nombre"))
+    autor.setGeneroPrincipal(request.form.get("generoPrincipal"))
+    autor.guardate()
+    return render_template("abmAutor.html", ListaAutores=Autor.getAllAutores())
+
+@app.route('/modificacionLibro')
+def ModificacionLibro():
+    return render_template("modificacionLibro.html", ListaAutores=Autor.getAllAutores(), Libro=Libro.traerLibro(int(request.args.get("idLibro"))))
+
+@app.route('/modificarLibro', methods=['GET', 'POST'])
+def ModificarLibro():
+    libro = Libro
+    libro.setIdLibro(int(request.form.get("idLibro")))
+    libro.setTitulo(request.form.get("titulo"))
+    libro.setCantPaginas(int(request.form.get("cantPaginas")))
+    libro.setAutor(Autor.traerAutor(request.form.get("idAutor")))
+    libro.guardate()
+    return render_template("abmLibro.html", ListaLibros=Libro.getAllLibros())
+
 if __name__ == '__main__':  # para actualizar automaticamente la pagina sin tener que cerrarla
     app.run(debug=True) # para correr la pagina se puede hacer en este caso "python3 PruebaFlask.py" en la terminal
 

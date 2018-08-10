@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Modificacion Libros</title>
+</head>
+<body>
+<form action="/modificarLibro" method="post">
+        <input type="text" name="idLibro" value="{{Libro.idLibro}}" readonly>
+        <input type="text" name="titulo" value="{{Libro.titulo}}">
+        <input type="text" name="cantPaginas" value="{{Libro.cantPaginas}}">
+        <select name="idAutor">
+            {% for autor in ListaAutores %}
+             <option value="{{autor.id}}">{{autor.nombre}}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Sumbit">
+</body>
+</html>
