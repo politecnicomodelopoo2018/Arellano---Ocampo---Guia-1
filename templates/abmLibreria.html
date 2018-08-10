@@ -1,10 +1,15 @@
 <!DOCTYPE html>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 <html lang="en">
 <head>
+    <style>
+        a { color:#31ab90 }
+    </style>
     <meta charset="UTF-8">
     <title>AbmLibreria</title>
 </head>
 <body>
+    <a href="/paginaPrincipal" ><i class="fas fa-arrow-left"></i></a>
     <table width="40%" style="text-align:center" border = "1;">
         <tr>
             <th>ID</th>
@@ -21,14 +26,13 @@
             <td>{{libreria.nombre}}</td>
             <td>{{libreria.direccion}}</td>
             <td>{{libreria.dueño.nombre + " " + libreria.dueño.apellido}}</td>
-            <td><a href="/libros?idLibreria={{libreria.idLibreria}}" ><button>Libros</button></a></td>
-            <td><a href="/bajaLibreria?idLibreria={{libreria.idLibreria}}" ><button>Baja</button></a></td>
-            <td><a href="/modificacionLibreria?idLibreria={{libreria.idLibreria}}" ><button>Modificacion</button></a></td>
+            <td><a href="/libros?idLibreria={{libreria.idLibreria}}" ><i class="fas fa-book"></i></a></td>
+            <td><a href="/bajaLibreria?idLibreria={{libreria.idLibreria}}" ><i class="far fa-times-circle"></i></a></td>
+            <td><a href="/modificacionLibreria?idLibreria={{libreria.idLibreria}}" ><i class="fas fa-pen"></i></a></td>
         {% endfor %}
         </tr>
     </table>
     <br>
-    <a href="/paginaPrincipal" ><button>Volver</button></a>
-    <a href="/altaLibreria" ><button>Alta</button></a>
+    <a href="/altaLibreria" ><i class="fas fa-plus"></i></a>
 </body>
 </html>

@@ -1,10 +1,15 @@
 <!DOCTYPE html>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 <html lang="en">
 <head>
+    <style>
+        a { color:#31ab90 }
+    </style>
     <meta charset="UTF-8">
     <title>AbmLibro</title>
 </head>
 <body>
+    <a href="/paginaPrincipal" ><i class="fas fa-arrow-left"></i></a>
     <table width="40%" style="text-align:center" border = "1;">
         <tr>
             <th>ID</th>
@@ -20,13 +25,12 @@
             <td>{{libro.titulo}}</td>
             <td>{{libro.cantPaginas}}</td>
             <td>{{libro.autor.nombre}}</td>
-            <td><a href="/bajaLibro?idLibro={{libro.idLibro}}" ><button>Baja</button></a></td>
-            <td><a href="/modificacionLibro?idLibro={{libro.idLibro}}" ><button>Modificacion</button></a></td>
+            <td><a href="/bajaLibro?idLibro={{libro.idLibro}}" ><i class="far fa-times-circle"></i></a></td>
+            <td><a href="/modificacionLibro?idLibro={{libro.idLibro}}" ><i class="fas fa-pen"></i></a></td>
         </tr>
         {% endfor %}
     </table>
     <br>
-    <a href="/paginaPrincipal" ><button>Volver</button></a>
-    <a href="/altaLibro" ><button>Alta</button></a>
+    <a href="/altaLibro" ><i class="fas fa-plus"></i></a>
 </body>
 </html>

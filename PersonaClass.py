@@ -83,7 +83,6 @@ class Dueño (Persona):
         cur = DB().run("INSERT INTO Dueño VALUES (NULL, '%s', '%s');" %(self.nombre, self.apellido))
         self.id = cur.lastrowid
 
-
     def actualizate(self):
         DB().run("UPDATE Dueño SET Nombre = '%s', Apellido = '%s' WHERE idDueño = %i"
                  %(self.nombre, self.apellido, self.id))

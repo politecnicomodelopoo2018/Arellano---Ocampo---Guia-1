@@ -18,6 +18,7 @@ lista = Libro.getAllLibros()
 for item in lista:
     print(item.cantPaginas)
 
+
 @app.route('/')
 def Index():
     return redirect("/paginaPrincipal")
@@ -32,21 +33,26 @@ def PaginaPrincipal():
 def AbmDueño():
     return render_template("abmDueño.html",  ListaDueños=Dueño.getAllDueños())
 
+
 @app.route('/abmAutor')
 def AbmAutor():
     return render_template("abmAutor.html",  ListaAutores=Autor.getAllAutores())
+
 
 @app.route('/abmLibro')
 def AbmLibro():
     return render_template("abmLibro.html", ListaLibros=Libro.getAllLibros())
 
+
 @app.route('/abmLibreria')
 def AbmLibreria():
     return render_template("abmLibreria.html", ListaLibrerias=Libreria.getAllLibrerias())
 
+
 @app.route('/libros')
 def AbmLibros():
     return render_template("libros.html", ListaLibros=Libreria.traerLibreria(int(request.args.get("idLibreria"))).getListaLibros(), Libreria=Libreria.traerLibreria(int(request.args.get("idLibreria"))))
+
 
 @app.route('/bajaAutor')
 def BajaAutor():
@@ -54,11 +60,13 @@ def BajaAutor():
     autor.eliminate()
     return render_template("abmAutor.html", ListaAutores=Autor.getAllAutores())
 
+
 @app.route('/bajaDueño')
 def BajaDueño():
     dueño = Dueño.traerDueño(int(request.args.get("idDueño")))
     dueño.eliminate()
     return render_template("abmDueño.html", ListaDueños=Dueño.getAllDueños())
+
 
 @app.route('/bajaLibro')
 def BajaLibro():
@@ -66,15 +74,18 @@ def BajaLibro():
     libro.eliminate()
     return render_template("abmLibro.html", ListaLibros=Libro.getAllLibros())
 
+
 @app.route('/bajaLibreria')
 def BajaLibreria():
     libreria = Libreria.traerLibreria(int(request.args.get("idLibreria")))
     libreria.eliminate()
     return render_template("abmLibreria.html", ListaLibrerias=Libreria.getAllLibrerias())
 
+
 @app.route('/altaDueño')
 def AltaDueño():
     return render_template("altaDueño.html")
+
 
 @app.route('/insertarDueño', methods=['GET', 'POST'])
 def InsertarDueño():
@@ -84,9 +95,11 @@ def InsertarDueño():
     dueño.insertate()
     return render_template("abmDueño.html", ListaDueños=Dueño.getAllDueños())
 
+
 @app.route('/altaAutor')
 def AltaAutor():
     return render_template("altaAutor.html")
+
 
 @app.route('/insertarAutor', methods=['GET', 'POST'])
 def InsertarAutor():
@@ -96,9 +109,11 @@ def InsertarAutor():
     autor.insertate()
     return render_template("abmAutor.html", ListaAutores=Autor.getAllAutores())
 
+
 @app.route('/altaLibro')
 def AltaLibro():
     return render_template("altaLibro.html", ListaAutores=Autor.getAllAutores())
+
 
 @app.route('/insertarLibro', methods=['GET', 'POST'])
 def InsertarLibro():
@@ -109,9 +124,11 @@ def InsertarLibro():
     libro.insertate()
     return render_template("abmLibro.html", ListaLibros=Libro.getAllLibros())
 
+
 @app.route('/altaLibreria')
 def AltaLibreria():
     return render_template("altaLibreria.html", ListaDueños=Dueño.getAllDueños())
+
 
 @app.route('/insertarLibreria', methods=['GET', 'POST'])
 def InsertarLibreria():
@@ -122,15 +139,18 @@ def InsertarLibreria():
     libreria.insertate()
     return render_template("abmLibreria.html", ListaLibrerias=Libreria.getAllLibrerias())
 
+
 @app.route('/removerLibro')
 def RemoverLibro():
     libreria = Libreria.traerLibreria(int(request.args.get("idLibreria")))
     libreria.removeLibro(Libro.traerLibro(int(request.args.get("idLibro"))))
     return render_template("libros.html", ListaLibros=libreria.getListaLibros(), Libreria=libreria)
 
+
 @app.route('/seleccionarLibros')
 def SeleccionarLibros():
     return render_template("seleccionarLibros.html", ListaLibros=Libro.getAllLibros(), Libreria=Libreria.traerLibreria(int(request.args.get("idLibreria"))))
+
 
 @app.route('/añadirLibro', methods=['GET', 'POST'])
 def AñadirLibro():
@@ -139,9 +159,11 @@ def AñadirLibro():
     libreria.addLibro(libro)
     return render_template("libros.html", ListaLibros=Libreria.traerLibreria(int(request.form.get("idLibreria"))).getListaLibros(), Libreria=libreria)
 
+
 @app.route('/modificacionDueño')
 def ModificacionDueño():
     return render_template("modificacionDueño.html", Dueño=Dueño.traerDueño(int(request.args.get("idDueño"))))
+
 
 @app.route('/modificarDueño', methods=['GET', 'POST'])
 def ModificarDueño():
@@ -152,9 +174,11 @@ def ModificarDueño():
     dueño.guardate()
     return render_template("abmDueño.html", ListaDueños=Dueño.getAllDueños())
 
+
 @app.route('/modificacionAutor')
 def ModificacionAutor():
     return render_template("modificacionAutor.html", Autor=Autor.traerAutor(int(request.args.get("idAutor"))))
+
 
 @app.route('/modificarAutor', methods=['GET', 'POST'])
 def ModificarAutor():
@@ -165,9 +189,11 @@ def ModificarAutor():
     autor.guardate()
     return render_template("abmAutor.html", ListaAutores=Autor.getAllAutores())
 
+
 @app.route('/modificacionLibro')
 def ModificacionLibro():
     return render_template("modificacionLibro.html", ListaAutores=Autor.getAllAutores(), Libro=Libro.traerLibro(int(request.args.get("idLibro"))))
+
 
 @app.route('/modificarLibro', methods=['GET', 'POST'])
 def ModificarLibro():
@@ -179,9 +205,11 @@ def ModificarLibro():
     libro.guardate()
     return render_template("abmLibro.html", ListaLibros=Libro.getAllLibros())
 
+
 @app.route('/modificacionLibreria')
 def ModificacionLibreria():
     return render_template("modificacionLibreria.html", ListaDueños=Dueño.getAllDueños(), Libreria=Libreria.traerLibreria(int(request.args.get("idLibreria"))))
+
 
 @app.route('/modificarLibreria', methods=['GET', 'POST'])
 def ModificarLibreria():
@@ -192,6 +220,7 @@ def ModificarLibreria():
     libreria.setDueño(Dueño.traerDueño(int(request.form.get("idDueño"))))
     libreria.guardate()
     return render_template('abmLibreria.html', ListaLibrerias=Libreria.getAllLibrerias())
+
 
 if __name__ == '__main__':  # para actualizar automaticamente la pagina sin tener que cerrarla
     app.run(debug=True) # para correr la pagina se puede hacer en este caso "python3 PruebaFlask.py" en la terminal
