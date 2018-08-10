@@ -1,10 +1,15 @@
 <!DOCTYPE html>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 <html lang="en">
 <head>
+    <style>
+         a { color:#31ab90 }
+    </style>
     <meta charset="UTF-8">
     <title>Modificacion Libreria</title>
 </head>
 <body>
+<a href="/abmLibreria" ><i class="fas fa-arrow-left"></i></a>
 <form action="/modificarLibreria" method="post">
     <input type="text" name="idLibreria" value="{{Libreria.idLibreria}}" readonly>
     <input type="text" name="nombre" value="{{Libreria.nombre}}">
@@ -16,7 +21,5 @@
      </select>
     <input type="submit" value="Sumbit">
 </form>
-<br>
-<a href="/abmLibreria" ><button>Volver</button></a>
 </body>
 </html>

@@ -1,10 +1,15 @@
 <!DOCTYPE html>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 <html lang="en">
 <head>
+    <style>
+        a { color:#31ab90 }
+    </style>
     <meta charset="UTF-8">
     <title>Libros</title>
 </head>
 <body>
+    <a href="/abmLibreria" ><i class="fas fa-arrow-left"></i></a>
     <table width="40%" style="text-align:center" border = "1;">
         <tr>
             <th>ID</th>
@@ -19,12 +24,11 @@
             <td>{{libro.titulo}}</td>
             <td>{{libro.autor.nombre}}</td>
             <td>{{libro.cantPaginas}}</td>
-            <td><a href="/removerLibro?idLibro={{libro.idLibro}}&idLibreria={{Libreria.idLibreria}}" ><button>Remover</button></a></td>
+            <td><a href="/removerLibro?idLibro={{libro.idLibro}}&idLibreria={{Libreria.idLibreria}}" ><i class="far fa-times-circle"></i></a></td>
         </tr>
         {% endfor %}
     </table>
     <br>
-    <a href="/abmLibreria" ><button>Volver</button></a>
-    <a href="/seleccionarLibros?idLibreria={{Libreria.idLibreria}}"><button>Añadir</button></a>
+    <a href="/seleccionarLibros?idLibreria={{Libreria.idLibreria}}"><i class="fas fa-plus"></i></a>
 </body>
 </html>
