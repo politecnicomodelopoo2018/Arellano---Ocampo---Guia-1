@@ -171,13 +171,27 @@ def ModificacionLibro():
 
 @app.route('/modificarLibro', methods=['GET', 'POST'])
 def ModificarLibro():
-    libro = Libro
+    libro = Libro()
     libro.setIdLibro(int(request.form.get("idLibro")))
     libro.setTitulo(request.form.get("titulo"))
     libro.setCantPaginas(int(request.form.get("cantPaginas")))
-    libro.setAutor(Autor.traerAutor(request.form.get("idAutor")))
+    libro.setAutor(Autor.traerAutor(int(request.form.get("idAutor"))))
     libro.guardate()
     return render_template("abmLibro.html", ListaLibros=Libro.getAllLibros())
+
+@app.route('/modificacionLibreria')
+def ModificacionLibreria():
+    return render_template("modificacionLibreria.html", ListaDueños=Dueño.getAllDueños(), Libreria=Libreria.traerLibreria(int(request.args.get("idLibreria"))))
+
+@app.route('/modificarLibreria', methods=['GET', 'POST'])
+def ModificarLibreria():
+    libreria = Libreria()
+    libreria.setIdLibreria(int(request.form.get("idLibreria")))
+    libreria.setDireccion(request.form.get("direccion"))
+    libreria.setNombre((request.form.get("nombre")))
+    libreria.setDueño(Dueño.traerDueño(int(request.form.get("idDueño"))))
+    libreria.guardate()
+    return render_template('abmLibreria.html', ListaLibrerias=Libreria.getAllLibrerias())
 
 if __name__ == '__main__':  # para actualizar automaticamente la pagina sin tener que cerrarla
     app.run(debug=True) # para correr la pagina se puede hacer en este caso "python3 PruebaFlask.py" en la terminal

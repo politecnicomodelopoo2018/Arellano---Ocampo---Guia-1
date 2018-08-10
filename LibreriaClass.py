@@ -9,6 +9,9 @@ class Libreria (object):
     direccion = None
     dueño = None
 
+    def setIdLibreria(self, idLibreria):
+        self.idLibreria = idLibreria
+
     def setNombre(self, nombre):
         self.nombre = nombre
 

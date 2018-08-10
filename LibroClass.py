@@ -8,8 +8,8 @@ class Libro (object):
     cantPaginas = None
     autor = None
 
-    def setIdLibro(self, id):
-        self.idLibro = id
+    def setIdLibro(self, idLibro):
+        self.idLibro = idLibro
 
     def setTitulo (self, titulo):
         self.titulo = titulo
