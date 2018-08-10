@@ -20,7 +20,7 @@ for item in lista:
 
 @app.route('/')
 def Index():
-    return redirect("/paginaPrincipal.html")
+    return redirect("/paginaPrincipal")
 
 
 @app.route('/paginaPrincipal')
@@ -53,6 +53,25 @@ def BajaAutor():
     autor = Autor.traerAutor(int(request.args.get("idAutor")))
     autor.eliminate()
     return render_template("abmAutor.html", ListaAutores=Autor.getAllAutores())
+
+@app.route('/bajaDueño')
+def BajaDueño():
+    dueño = Dueño.traerDueño(int(request.args.get("idDueño")))
+    dueño.eliminate()
+    return render_template("abmDueño.html", ListaDueños=Dueño.getAllDueños())
+
+@app.route('/bajaLibro')
+def BajaLibro():
+    libro = Libro.traerLibro(int(request.args.get("idLibro")))
+    libro.eliminate()
+    return render_template("abmLibro.html", ListaLibros=Libro.getAllLibros())
+
+@app.route('/bajaLibreria')
+def BajaLibreria():
+    libreria = Libreria.traerLibreria(int(request.args.get("idLibreria")))
+    libreria.eliminate()
+    return render_template("abmLibreria.html", ListaLibrerias=Libreria.getAllLibrerias())
+
 if __name__ == '__main__':  # para actualizar automaticamente la pagina sin tener que cerrarla
     app.run(debug=True) # para correr la pagina se puede hacer en este caso "python3 PruebaFlask.py" en la terminal
 

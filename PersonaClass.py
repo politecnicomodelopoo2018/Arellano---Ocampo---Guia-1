@@ -47,6 +47,7 @@ class Autor (Persona):
     def eliminate(self):
         DB().run("DELETE FROM Autor WHERE idAutor = %i" %self.id)
 
+
     def deserializar(self, dict):
         super().deserializar(dict)
         self.id = dict["idAutor"]
