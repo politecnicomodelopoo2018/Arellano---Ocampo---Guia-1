@@ -122,16 +122,22 @@ def InsertarLibreria():
     libreria.insertate()
     return render_template("abmLibreria.html", ListaLibrerias=Libreria.getAllLibrerias())
 
-@app.route('/añadirLibro', methods=['GET', 'POST'])
-def AñadirLibro():
-    libro = Libro()
-
 @app.route('/removerLibro')
 def RemoverLibro():
     libreria = Libreria.traerLibreria(int(request.args.get("idLibreria")))
     libreria.removeLibro(Libro.traerLibro(int(request.args.get("idLibro"))))
-
     return render_template("libros.html", ListaLibros=libreria.getListaLibros(), Libreria=libreria)
+
+@app.route('/seleccionarLibros')
+def SeleccionarLibros():
+    return render_template("seleccionarLibros.html", ListaLibros=Libro.getAllLibros(), Libreria=Libreria.traerLibreria(int(request.args.get("idLibreria"))))
+
+@app.route('/añadirLibro', methods=['GET', 'POST'])
+def AñadirLibro():
+    libro = Libro.traerLibro(int(request.form.get("libro")))
+    libreria = Libreria.traerLibreria((int(request.form.get("idLibreria"))))
+    libreria.addLibro(libro)
+    return render_template("libros.html", ListaLibros=Libreria.traerLibreria(int(request.form.get("idLibreria"))).getListaLibros(), Libreria=libreria)
 
 if __name__ == '__main__':  # para actualizar automaticamente la pagina sin tener que cerrarla
     app.run(debug=True) # para correr la pagina se puede hacer en este caso "python3 PruebaFlask.py" en la terminal
